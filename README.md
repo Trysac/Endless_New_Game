@@ -1,2 +1,2 @@
-# Endless_New_Game
- Juego Pirata
+# Platformer2D
+Juego Platformer 2D
