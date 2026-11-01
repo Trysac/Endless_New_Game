@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhor7t5klwdwx"]
+[gd_scene load_steps=22 format=3 uid="uid://hd3ei4djak8da"]
 
 [ext_resource type="Texture2D" uid="uid://cg6wkkuni8aq8" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/bg_image.png" id="1_a12cs"]
 [ext_resource type="TileSet" uid="uid://bx1rsqucrwm2i" path="res://assets/resources/bg_tile_set.tres" id="1_atorb"]
