@@ -266,4 +266,3 @@ shape = SubResource("RectangleShape2D_httk0")
 position = Vector2(9, 4)
 shape = SubResource("RectangleShape2D_g8wy3")
 
-[connection signal="area_exited" from="Area2DListen" to="." method="_on_area_2d_listen_area_exited"]

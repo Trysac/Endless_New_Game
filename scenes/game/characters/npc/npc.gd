@@ -6,11 +6,8 @@ extends CharacterBody2D
 
 # Area de contacto, para mostrar el diálogo
 var _npc_dialogue_area: Node2D
-# Determina el estado del diálogo (activo o inactivo)
-var _dialog_active = false
 
 @onready var _collision = $CollisionShape2D
-@onready var _collision_listen = $Area2DListen/CollisionShape2D
 @onready var _animation = $Npc
 
 # Función de inicialización
@@ -62,15 +59,3 @@ func set_dialogue(resource: DialogueResource):
 	if _npc_dialogue_area:
 		_npc_dialogue_area.set_dialogue(resource)
 
-
-# Retornamos el manejador de diálogos que esté activo
-func get_dialogue_manager():
-	if _npc_dialogue_area:
-		return _npc_dialogue_area.dialogue_manager
-
-
-# DOCUMENTACIÓN (áreas de colisión): https://docs.google.com/document/d/1FFAJSrAdE5xyY_iqUteeajHKY3tAIX5Q4TokM2KA3fw/edit?usp=drive_link
-# Función cuando un área entra en contacto con el NPC. _area: es el área que hace contacto
-func _on_area_2d_listen_area_exited(area):
-	# Seteamos variable del dialogo a false al abandonar el area
-	_dialog_active = false

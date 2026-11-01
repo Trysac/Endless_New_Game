@@ -182,11 +182,7 @@ func _apply_gravity(delta):
 			current_position = character.position.y
 			_jump_count = 0
 			if abs(last_position - current_position) >= distance_to_damage:
-				print("current_position : " + str(current_position))
-				print("last_position : " + str(last_position))
-				print("Es : " + str(abs(last_position - current_position)) + " Mayos igual que : " + str(distance_to_damage) + " Resultado --> " + str(abs(last_position - current_position) >= distance_to_damage))
 				if current_position > last_position:
-					print("DAÑO")
 					fall()
 			last_position = 0
 			current_position = 0

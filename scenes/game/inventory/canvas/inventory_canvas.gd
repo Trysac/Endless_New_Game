@@ -69,7 +69,7 @@ func add_item_by_name(_name: String):
 		# Sumamos uno
 		_num_available += 1
 		# Actualizamos nuevo número
-		var _num = _item_objects[index].set_num(str(_num_available))
+		_item_objects[index].set_num(str(_num_available))
 		return
 	
 	# Cargamos el recurso
@@ -103,7 +103,7 @@ func remove_item_by_name(_name: String):
 		var _num_available = _item_objects[index].get_num()
 		_num_available -= 1 
 		if _num_available > 0:
-			var _num = _item_objects[index].set_num(str(_num_available))
+			_item_objects[index].set_num(str(_num_available))
 			return
 		else:
 			# Removemos el nodo del item
@@ -126,18 +126,6 @@ func remove_item_by_name(_name: String):
 			
 			# Quitamos el nodo, del listado de nodos tipo item
 			_item_objects.remove_at(index)
-
-
-# Elimina todos los elementos del inventario
-func remove_all_items():
-	var size = _item_object_names.size()
-	for i in size:
-		remove_item_by_name(_item_object_names[size - i - 1])
-
-
-# Retorna un listado de "nombres" de items que están en inventario
-func get_item_list_names():
-	return _item_object_names
 
 
 func show_inventory(show: bool):

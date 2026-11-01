@@ -35,7 +35,6 @@ func _ready():
 	visible = true
 	# Impide que esta escena se ponga en pausa
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
-	#_toggle_show()
 	HealthDashboard.visible = false
 	# Iniciamoa con las animaciones
 	_anim_water.play()
@@ -122,7 +121,6 @@ func _on_button_pressed():
 		# Si no hemos iniciado, cargamos nivel 1 y cambiamos título de boton
 		SceneTransition.change_scene(PATH_LEVEL_1)
 		_started = true
-		#_toggle_show()
 
 
 # Cuando cambia el slider de sonido de ambiente ajustamos el volumne de ambiente
@@ -145,13 +143,6 @@ func show_menu(_show: bool):
 	else:
 		if visible:
 			_toggle_show()
-
-
-# Función para resetear el juego
-func restart():
-	#_toggle_show()
-	_started = false
-	_button.text = "Iniciar"
 
 
 # Mostramos/Ocultamos la pantalla de controles
