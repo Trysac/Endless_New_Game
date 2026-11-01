@@ -78,10 +78,10 @@ func _toggle_show():
 	
 	get_tree().paused = visible
 	
-	# Levels name their root node "Main".
-	var main_node = get_tree().get_root().get_node("Main")
-	if main_node:
-		var camera = main_node.find_child("Camera2D")
+	# Toggle the current level's camera, if it has one.
+	var current_scene = get_tree().current_scene
+	if current_scene:
+		var camera = current_scene.find_child("Camera2D")
 		if camera:
 			camera.enabled = not visible
 	if _started:
