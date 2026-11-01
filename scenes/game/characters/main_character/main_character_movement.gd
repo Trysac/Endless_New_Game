@@ -69,11 +69,11 @@ func _physics_process(_delta):
 
 func _unhandled_input(event):
 	# Cuando se presiona la tecla x, atacamos	
-	if event.is_action_released("hit"):
+	if event.is_action_released("attack"):
 		character.velocity.x = 0
 		_current_movement = _movements.ATTACK
 	# Cuando se presiona la tecla b, lanzamos bomba
-	elif event.is_action_released("bomb"):
+	elif event.is_action_released("throw_bomb"):
 		_current_movement = _movements.BOMB
 	_set_animation()
 
@@ -81,12 +81,12 @@ func _unhandled_input(event):
 # Función de movimiento general del personaje
 func _move(delta):
 	# Cuando se presiona la tecla (flecha izquierda), movemos el personaje a la izquierda
-	if Input.is_action_pressed("izquierda"):
+	if Input.is_action_pressed("move_left"):
 		character.velocity.x = -velocity
 		_current_movement = _movements.LEFT_WITH_SWORD	
 		turn_side = "left"
 	# Cuando se presiona la tecla (flecha derecha), movemos el personaje a la derecha
-	elif Input.is_action_pressed("derecha"):
+	elif Input.is_action_pressed("move_right"):
 		character.velocity.x = velocity
 		_current_movement = _movements.RIGHT_WITH_SWORD
 		turn_side = "right"
@@ -96,7 +96,7 @@ func _move(delta):
 		_current_movement = _movements.IDLE	
 	
 	# Cuando se presiona la tecla (espacio), hacemos animación de salto
-	if Input.is_action_just_pressed("saltar"):
+	if Input.is_action_just_pressed("jump"):
 		if character.is_on_floor():
 			_current_movement = _movements.JUMP_WITH_SWORD
 			if last_position == 0:

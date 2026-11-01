@@ -20,7 +20,7 @@ func _unhandled_input(event):
 	# Validamos cuantas bombas tenemos
 	var _count_bomb = HealthDashboard.points["Bomb"]
 	# Cuando se presiona la tecla (B - bomb) y no tiramos la bomba antes
-	if event.is_action_released("bomb") and not _move_script.bombing and _count_bomb > 0:
+	if event.is_action_released("throw_bomb") and not _move_script.bombing and _count_bomb > 0:
 		# Quitamos la bomba del invetario
 		HealthDashboard.add_bomb(-1)
 		# Inicializamos la bomba

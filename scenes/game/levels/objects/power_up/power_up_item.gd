@@ -29,7 +29,7 @@ func _unhandled_input(event):
 	if not _is_active:
 		return # Si el puntero no está sobre el item, terminamos la función
 	# Si hacemos clic, mostramos el diálogo de confirmación
-	if event is InputEventMouseButton and event.is_action_released("clic"):
+	if event is InputEventMouseButton and event.is_action_released("click"):
 		_confirm.show()
 
 
