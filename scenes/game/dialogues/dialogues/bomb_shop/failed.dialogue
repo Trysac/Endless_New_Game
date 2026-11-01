@@ -1,6 +1,6 @@
 ~ start
 
-Gran Pirata: Lo siento, no tienes suficientes monedas.
-Pirata Malaplata: Bueno. Tendré que conseguir más monedas.
+gran: Lo siento, no tienes suficientes monedas. [ID:SHOP_NOT_ENOUGH_COINS]
+pirata: Bueno. Tendré que conseguir más monedas. [ID:SHOP_NEED_MORE_COINS]
 
 => END

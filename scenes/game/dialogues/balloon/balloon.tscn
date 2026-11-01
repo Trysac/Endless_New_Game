@@ -23,6 +23,7 @@ script = ExtResource("1_4u26j")
 response_template = NodePath("Balloon/Margin/HBox/VBox/ResponseTemplate")
 
 [node name="Balloon" type="ColorRect" parent="."]
+auto_translate_mode = 2
 offset_right = 1152.0
 size_flags_horizontal = 3
 color = Color(0, 0, 0, 0.788235)

@@ -9,6 +9,8 @@ signal dialogue_ended()
 signal response_selected(response: DialogueResponse)
 
 const PATH_SPRITES = "res://scenes/game/dialogues/persons/"
+# Prefix of the translation keys of the characters' display names
+const CHARACTER_NAME_KEY_PREFIX = "CHARACTER_"
 
 # Template duplicated for each response
 @export var response_template: Node
@@ -32,7 +34,7 @@ var dialogue_line: DialogueLine:
 		
 		dialogue_line = next_dialogue_line
 		character_label.visible = not dialogue_line.character.is_empty()
-		character_label.text = tr(dialogue_line.character, "dialogue")
+		character_label.text = _get_character_name(dialogue_line.character)
 		# Replace the speaker's portrait
 		for n in portrait_node.get_children():
 			portrait_node.remove_child(n)
@@ -213,11 +215,21 @@ func _on_margin_resized() -> void:
 	_handle_resize()
 
 
-# Instantiates the portrait scene named after the speaker's first name.
-func _get_texture_for_dialogue(character: String):
-	var person = character.to_lower().split(" ")[0]
-	var filename = "%s/" % [person] + "%s.tscn" % [person]
-	return load(PATH_SPRITES + filename).instantiate()
+# Characters are written in the .dialogue files by id (e.g. "selena"):
+# the id names the portrait folder and the translated display name.
+func _get_character_name(character: String) -> String:
+	if character.is_empty():
+		return ""
+	return tr(CHARACTER_NAME_KEY_PREFIX + character.to_upper(), "dialogue")
+
+
+# Instantiates the portrait scene of the character id, or an empty node.
+func _get_texture_for_dialogue(character: String) -> Node:
+	var person = character.to_lower()
+	var path = PATH_SPRITES + "%s/%s.tscn" % [person, person]
+	if person.is_empty() or not ResourceLoader.exists(path):
+		return Node2D.new()
+	return load(path).instantiate()
 
 
 func _end_dialogue():

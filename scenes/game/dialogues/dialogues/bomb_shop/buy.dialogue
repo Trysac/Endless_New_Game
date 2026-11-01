@@ -1,19 +1,19 @@
 ~ start
 
-Gran Pirata: Hola pequeño pirata. ¿En qué te puedo ayudar?.
-Pirata Malaplata: Estaba interesado en comprar un cañon destructor.
-Gran Pirata: Lo siento, por ahora solo te ofrezco bombas. 5 monedas de oro por cada una.
-Pirata Malaplata: Bueno...
-- Quiero una [#amount=1]
+gran: Hola, pequeño pirata. ¿En qué te puedo ayudar? [ID:SHOP_GREETING]
+pirata: Estaba interesado en comprar un cañón destructor. [ID:SHOP_ASK_CANNON]
+gran: Lo siento, por ahora solo te ofrezco bombas. 5 monedas de oro por cada una. [ID:SHOP_ONLY_BOMBS]
+pirata: Bueno... [ID:SHOP_WELL]
+- Quiero una [#amount=1] [ID:SHOP_BUY_ONE]
 	=> pay
-- Quiero tres [#amount=3]
+- Quiero tres [#amount=3] [ID:SHOP_BUY_THREE]
 	=> pay
-- Quiero cinco [#amount=5]
+- Quiero cinco [#amount=5] [ID:SHOP_BUY_FIVE]
 	=> pay
-- Las que me alcancen con estas monedas [#amount=all]
+- Las que me alcancen con estas monedas [#amount=all] [ID:SHOP_BUY_ALL]
 	=> END
 
 ~ pay
-Gran Pirata: Sí te alcanza, ¿verdad?.
-Pirata Malaplata: ¡Claro que sí!
+gran: Sí te alcanza, ¿verdad? [ID:SHOP_CAN_AFFORD]
+pirata: ¡Claro que sí! [ID:SHOP_OF_COURSE]
 => END

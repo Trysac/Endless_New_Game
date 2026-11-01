@@ -1,6 +1,6 @@
 ~ start
 
-Pirata Malaplata: Perfecto, he conseguido una poción mágica.
-Pirata Malaplata: Esta poción permite atacar con una espada con poder mágico que derriba a cualquier enemigo de un solo golpe.
+pirata: Perfecto, he conseguido una poción mágica. [ID:BLUE_POTION_FOUND]
+pirata: Esta poción permite atacar con una espada con poder mágico que derriba a cualquier enemigo de un solo golpe. [ID:BLUE_POTION_EFFECT]
 
 => END

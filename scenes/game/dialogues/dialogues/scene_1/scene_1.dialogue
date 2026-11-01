@@ -1,13 +1,13 @@
 ~ dialogue_1
 
-Selena la Ballena: ¡Hola aventurero! ¿qué te trae por estos rumbos?
-Pirata Malaplata: Necesito abrir la puerta. ¿Puedes ayudarme?
-Selena la Ballena: Sí, claro. Solo tienes que caminar hasta la puerta y se abrirá.
+selena: ¡Hola, aventurero! ¿Qué te trae por estos rumbos? [ID:SELENA_GREETING]
+pirata: Necesito abrir la puerta. ¿Puedes ayudarme? [ID:SELENA_DOOR_QUESTION]
+selena: Sí, claro. Solo tienes que caminar hasta la puerta y se abrirá. [ID:SELENA_DOOR_HINT]
 
-- Gracias, ¡lo intentaré!
+- Gracias, ¡lo intentaré! [ID:SELENA_THANKS]
   => dialogue_2
 
 
 ~ dialogue_2
-Selena la Ballena: ¡Bueno nos vemos!
+selena: ¡Bueno, nos vemos! [ID:SELENA_GOODBYE]
 => END
