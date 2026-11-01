@@ -29,9 +29,13 @@ def main():
     OUTPUT.mkdir(parents=True, exist_ok=True)
     jobs = [(name, recipe) for name, recipe in EFFECTS.items()]
     jobs += [(name, lambda song=song: render(song)) for name, song in SONGS.items()]
-    with tempfile.TemporaryDirectory() as tmp:
-        staged = pathlib.Path(tmp) / "out"
-        staged.mkdir()
+    # Stage next to OUTPUT so the final os.replace never crosses filesystems;
+    # the leading dot keeps Godot from importing the staging folder.
+    with (
+        tempfile.TemporaryDirectory() as tmp,
+        tempfile.TemporaryDirectory(dir=OUTPUT.parent, prefix=".sounds-build-") as stage,
+    ):
+        staged = pathlib.Path(stage)
         # Encode everything first so a failure leaves assets/sounds untouched.
         for name, recipe in jobs:
             wav = pathlib.Path(tmp) / (pathlib.Path(name).stem + ".wav")
