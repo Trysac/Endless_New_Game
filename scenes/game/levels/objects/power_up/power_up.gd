@@ -24,12 +24,13 @@ func _show_dialogue():
 
 
 func _on_area_body_entered(body):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and not _move:
 		# Freeze the player while the dialogue is shown.
+		_move = body.get_node_or_null("MainCharacterMovement")
 		_show_dialogue()
-		_move = body.get_node("MainCharacterMovement")
-		_move.set_disabled(true)
-		_move.set_idle()
+		if _move:
+			_move.set_disabled(true)
+			_move.set_idle()
 
 
 # Adds the power-up to the inventory, plays the pick-up animation,
@@ -38,7 +39,8 @@ func _pick_up():
 	InventoryCanvas.add_item_by_name(animation)
 	play("pick_up")
 	await animation_finished
-	_move.set_disabled(false)
+	if is_instance_valid(_move):
+		_move.set_disabled(false)
 	queue_free()
 
 
