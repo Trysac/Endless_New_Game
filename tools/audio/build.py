@@ -4,6 +4,7 @@ Usage (from the repository root, needs ffmpeg on PATH):
     python tools/audio/build.py
 """
 
+import os
 import pathlib
 import subprocess
 import sys
@@ -29,11 +30,17 @@ def main():
     jobs = [(name, recipe) for name, recipe in EFFECTS.items()]
     jobs += [(name, lambda song=song: render(song)) for name, song in SONGS.items()]
     with tempfile.TemporaryDirectory() as tmp:
+        staged = pathlib.Path(tmp) / "out"
+        staged.mkdir()
+        # Encode everything first so a failure leaves assets/sounds untouched.
         for name, recipe in jobs:
             wav = pathlib.Path(tmp) / (pathlib.Path(name).stem + ".wav")
             recipe().write(str(wav))
-            encode(wav, OUTPUT / name)
+            encode(wav, staged / name)
             print("built", name)
+        # Every encode succeeded: move the results into place.
+        for name, _ in jobs:
+            os.replace(staged / name, OUTPUT / name)
 
 
 if __name__ == "__main__":
