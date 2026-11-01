@@ -11,13 +11,17 @@ extends Node2D
 @onready var _effect = $Effect
 @onready var _audio = $AudioStreamPlayer
 
+var _taken = false # True once the potion has been picked up
+
 
 func _ready():
 	_potion.play()
 
 
 func _on_area_body_entered(body):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and not _taken:
+		# Heal only once, even if the player re-enters during the effect.
+		_taken = true
 		HealthDashboard.add_life(life)
 		_audio.play()
 		# Play the pick-up effect before freeing the potion.
