@@ -6,7 +6,7 @@ extends CanvasLayer
 
 
 signal dialogue_ended()
-signal response_selected(response: String)
+signal response_selected(response: DialogueResponse)
 
 const PATH_SPRITES = "res://scenes/game/dialogues/persons/"
 
@@ -188,10 +188,10 @@ func _on_response_gui_input(event: InputEvent, item: Control) -> void:
 		return
 	# A click or ui_accept picks the response.
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
-		response_selected.emit(dialogue_line.responses[item.get_index()].text)
+		response_selected.emit(dialogue_line.responses[item.get_index()])
 		_next(dialogue_line.responses[item.get_index()].next_id)
 	elif event.is_action_pressed("ui_accept") and item in _get_responses():
-		response_selected.emit(dialogue_line.responses[item.get_index()].text)
+		response_selected.emit(dialogue_line.responses[item.get_index()])
 		_next(dialogue_line.responses[item.get_index()].next_id)
 
 

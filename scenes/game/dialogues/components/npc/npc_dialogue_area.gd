@@ -7,7 +7,7 @@ extends Node2D
 
 signal talk()
 signal dialogue_ended()
-signal response_selected(response: String)
+signal response_selected(response: DialogueResponse)
 
 ## Dialogue the NPC shows to the player.
 @export var dialogue_resource: DialogueResource
@@ -73,7 +73,7 @@ func _npc_dialogue_ended():
 	_dialogue_is_visible = false
 
 
-func _on_response_selected(response: String):
+func _on_response_selected(response: DialogueResponse):
 	self.emit_signal("response_selected", response)
 
 

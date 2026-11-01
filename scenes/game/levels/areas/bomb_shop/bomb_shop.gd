@@ -63,21 +63,19 @@ func _on_dialogue_ended():
 			npc.set_and_show_dialogue(failed_dialogue)
 
 
-func _on_response_selected(response: String):
+func _on_response_selected(response: DialogueResponse):
 	_responses.append(response)
 
 
-# Maps the selected response text to an amount (-1 means "all my coins").
-# Matches the Spanish dialogue text.
+# Reads the amount from the last response tagged with [#amount=N] in the
+# dialogue, so it does not depend on the (translatable) response text.
+# "all" (returned as -1) means as many bombs as the coins allow.
 func _get_selected_amount():
 	var amount = 0
-	for r in _responses:
-		if (r as String).contains("una"):
-			amount = 1
-		elif (r as String).contains("tres"):
-			amount = 3
-		elif (r as String).contains("cinco"):
-			amount = 5
-		elif (r as String).contains("monedas"):
+	for response: DialogueResponse in _responses:
+		var value = response.get_tag_value("amount")
+		if value == "all":
 			amount = -1
+		elif value.is_valid_int():
+			amount = int(value)
 	return amount

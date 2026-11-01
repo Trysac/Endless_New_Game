@@ -4,13 +4,13 @@ Gran Pirata: Hola pequeño pirata. ¿En qué te puedo ayudar?.
 Pirata Malaplata: Estaba interesado en comprar un cañon destructor.
 Gran Pirata: Lo siento, por ahora solo te ofrezco bombas. 5 monedas de oro por cada una.
 Pirata Malaplata: Bueno...
-- Quiero una
+- Quiero una [#amount=1]
 	=> pay
-- Quiero tres
+- Quiero tres [#amount=3]
 	=> pay
-- Quiero cinco
+- Quiero cinco [#amount=5]
 	=> pay
-- Las que me alcancen con estas monedas
+- Las que me alcancen con estas monedas [#amount=all]
 	=> END
 
 ~ pay
