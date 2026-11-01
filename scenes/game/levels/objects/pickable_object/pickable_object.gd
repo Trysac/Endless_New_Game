@@ -19,6 +19,7 @@ extends Area2D
 @onready var _collider = $CollisionShape2D
 
 var _pickup_sound = preload("res://assets/sounds/pickup.mp3")
+var _taken = false # True once collected; the collider is only disabled next frame
 
 
 func _ready():
@@ -67,6 +68,7 @@ func do_animation():
 
 func _on_body_entered(body):
 	# Disabling the collider ensures the item is collected only once.
-	if body.is_in_group("player") and not _collider.disabled:
-		_collider.disabled = true
+	if body.is_in_group("player") and not _taken:
+		_collider.set_deferred("disabled", true)
+		_taken = true
 		do_animation()
