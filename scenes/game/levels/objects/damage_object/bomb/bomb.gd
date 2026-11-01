@@ -4,7 +4,7 @@ extends RigidBody2D
 ## Setea la animación de la exploción
 
 # Precargamos la escena de la bomba
-var _bomb_effect = preload("res://scenes/game/levels/objects/damage_object/bomb/bomb_explotion.tscn")
+var _bomb_effect = preload("res://scenes/game/levels/objects/damage_object/bomb/bomb_explosion.tscn")
 
 # Definimos el nodo de animación
 @onready var _animation = $BombAnimation

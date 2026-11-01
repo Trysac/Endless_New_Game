@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b714md2ej20jy" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/3-explotion/7.png" id="7_4drba"]
 [ext_resource type="Texture2D" uid="uid://d11bn1xatfrjr" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/3-explotion/8.png" id="8_jxpen"]
 [ext_resource type="Texture2D" uid="uid://ci7hlrppyx8nv" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/3-explotion/9.png" id="9_hadyc"]
-[ext_resource type="Script" path="res://scenes/game/levels/objects/damage_object/bomb/bomb_explotion.gd" id="10_ca1gs"]
+[ext_resource type="Script" path="res://scenes/game/levels/objects/damage_object/bomb/bomb_explosion.gd" id="10_ca1gs"]
 [ext_resource type="AudioStream" uid="uid://ca801ary3k02b" path="res://assets/sounds/explosion.mp3" id="11_y4kqn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kbf0l"]
