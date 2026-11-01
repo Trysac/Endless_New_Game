@@ -9,6 +9,7 @@ extends Node2D
 
 # Scene loaded when the splash sequence ends.
 var _path_map_scene = "res://scenes/game/levels/rooms/init/init.tscn"
+var _leaving = false # True once the title screen has been requested
 
 
 func _ready():
@@ -23,11 +24,17 @@ func _input(event):
 
 
 func _go_title_screen():
+	# A skip and an animation end can both land here: change scene only once.
+	if _leaving:
+		return
+	_leaving = true
 	set_process_input(false)
 	SceneTransition.change_scene(_path_map_scene)
 
 
 func _on_studio_animation_finished(_anim_name):
+	if _leaving:
+		return
 	_pixel_frog_animation.play("do_splash")
 
 
