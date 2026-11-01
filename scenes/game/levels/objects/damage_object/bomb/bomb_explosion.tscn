@@ -46,7 +46,7 @@ animations = [{
 "texture": null
 }],
 "loop": false,
-"name": &"explotion",
+"name": &"explosion",
 "speed": 5.0
 }]
 
@@ -55,8 +55,8 @@ radius = 97.0464
 
 [node name="BombExplotion" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_kbf0l")
-animation = &"explotion"
-autoplay = "explotion"
+animation = &"explosion"
+autoplay = "explosion"
 speed_scale = 1.5
 script = ExtResource("10_ca1gs")
 

@@ -43,11 +43,11 @@ metadata/_edit_layout_mode = 1
 [node name="HBox" type="HBoxContainer" parent="Balloon/Margin"]
 layout_mode = 2
 
-[node name="Portrate" type="Control" parent="Balloon/Margin/HBox"]
+[node name="Portrait" type="Control" parent="Balloon/Margin/HBox"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Balloon/Margin/HBox/Portrate"]
+[node name="Sprite2D" type="Sprite2D" parent="Balloon/Margin/HBox/Portrait"]
 centered = false
 
 [node name="VBox" type="VBoxContainer" parent="Balloon/Margin/HBox"]

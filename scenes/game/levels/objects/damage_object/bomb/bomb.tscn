@@ -59,7 +59,7 @@ animations = [{
 "texture": null
 }],
 "loop": false,
-"name": &"explotion",
+"name": &"explosion",
 "speed": 5.0
 }, {
 "frames": [{

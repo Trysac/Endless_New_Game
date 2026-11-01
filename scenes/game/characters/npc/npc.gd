@@ -10,7 +10,7 @@ var _npc_dialogue_area: Node2D
 var _dialog_active = false
 
 @onready var _collision = $CollisionShape2D
-@onready var _collisionListen = $Area2DListen/CollisionShape2D
+@onready var _collision_listen = $Area2DListen/CollisionShape2D
 @onready var _animation = $Npc
 
 # Función de inicialización
@@ -41,7 +41,7 @@ func on_response_selected(fn):
 
 
 # Función que deshabilita las colisiones del NPC y también la física
-func disabled_collision(disabled: bool):
+func set_collision_disabled(disabled: bool):
 	set_physics_process(not disabled)
 	_collision.disabled = disabled
 

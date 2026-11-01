@@ -8,4 +8,4 @@ extends Node
 var attack_effect = "normal"
 
 # Numero de ataques disponibles
-var number_attack = 0
+var special_attacks_left = 0

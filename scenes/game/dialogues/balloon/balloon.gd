@@ -103,9 +103,9 @@ var dialogue_line: DialogueLine:
 @onready var balloon: ColorRect = $Balloon
 # Definición del nodo de margin
 @onready var margin: MarginContainer = $Balloon/Margin
-@onready var portrait_node: Control = $Balloon/Margin/HBox/Portrate
+@onready var portrait_node: Control = $Balloon/Margin/HBox/Portrait
 # Definición del nodo del avatar
-@onready var character_portrait: Sprite2D = $Balloon/Margin/HBox/Portrate/Sprite2D
+@onready var character_portrait: Sprite2D = $Balloon/Margin/HBox/Portrait/Sprite2D
 # Definición del nodo del nombre del personaje
 @onready var character_label: RichTextLabel = $Balloon/Margin/HBox/VBox/CharacterLabel
 # Definición del nodo del diálogo

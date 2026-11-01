@@ -24,7 +24,7 @@ var _responses = [] # Guardamos las respuestas seleccionadas
 # Función de inicialización
 func _ready():
 	# Quitamos colisiones del NPC y escuchamos eventos del diálogo
-	npc.disabled_collision(true)
+	npc.set_collision_disabled(true)
 	npc.on_dialogue_ended(_on_dialogue_ended)
 	npc.on_response_selected(_on_response_selected)
 

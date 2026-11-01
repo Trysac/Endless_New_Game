@@ -38,17 +38,17 @@ var _moving_left = true
 # Copia de objeto que entra a colisión
 var _body: Node2D
 # Vandera de persecución
-var _is_persecuted = false
+var _is_chasing = false
 # Vandera de no detectar colisiones
 var _stop_detection = false
 # Vandera de no detectar ataques
 var _stop_attack = false
 # Cuantas veces aguanta
-var _hit_to_die = 3
+var _hits_to_die = 3
 # Cuantas veces pegaron al personaje principal
-var _has_hits = 0
+var _hits_taken = 0
 # La muerte del cangrejo
-var die = false
+var is_dead = false
 
 
 # Función de inicialización
@@ -65,7 +65,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if (die): return
+	if (is_dead): return
 	# Si la animación es de correr, aplicamos el movimiento
 	if animation == "run":
 		_move_character(delta)
@@ -111,8 +111,8 @@ func _on_area_2d_body_entered(body):
 		_body = body
 
 
-func _on_area_2d_body_exited(__body):
-	if not die:
+func _on_area_2d_body_exited(_exited_body):
+	if not is_dead:
 		# Estado inicial
 		_init_state()
 
@@ -188,7 +188,7 @@ func _detection():
 	if _object1 and _object1.is_in_group("player") and _raycast_vision_left.is_colliding():
 		_move(true)
 	else:
-		_is_persecuted = false
+		_is_chasing = false
 	
 	# Validamos si la colisión es del lado derecho
 	if _object2 and _object2.is_in_group("player") and _raycast_vision_right.is_colliding():
@@ -196,12 +196,12 @@ func _detection():
 	
 	# No hay colisiones
 	if not _object1 and not _object2 and _animation.get_animation() != "attack":
-		_is_persecuted = false
+		_is_chasing = false
 		
 		
 func _move(_direction):
 	# Si ya estamos en acción salimos
-	if _is_persecuted or _animation.get_animation() == "attack":
+	if _is_chasing or _animation.get_animation() == "attack":
 		return
 	# Aplicamos la gravidad
 	velocity.y += _gravity
@@ -226,12 +226,12 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("hit"):
 		_damage()
 	elif area.is_in_group("die"):
-		die = true
+		is_dead = true
 		_damage()
 
 func _damage():	
 	# Agregamos un golpe
-	_has_hits += 1
+	_hits_taken += 1
 	# Reproducimos sonido
 	_audio_player.stream = _punch_sound
 	_audio_player.play()
@@ -240,20 +240,20 @@ func _damage():
 	_animation_effect.play("idle")
 	
 	# Validamos si tenemos ataque especial
-	if Global.number_attack > 0:
+	if Global.special_attacks_left > 0:
 		# Restamos 1 al ataque especial
-		die = true
-		Global.number_attack -= 1
+		is_dead = true
+		Global.special_attacks_left -= 1
 	
 	# Validamos si ya no tenemos ataque
-	if Global.number_attack == 0:
+	if Global.special_attacks_left == 0:
 		# Seteamos el ataque normal
 		Global.attack_effect = "normal"
 
-	if die or _hit_to_die <= _has_hits:
+	if is_dead or _hits_to_die <= _hits_taken:
 		# Seteamoas banderita no atacar
 		_stop_attack = true
-		die = true
+		is_dead = true
 		velocity.x = 0
 		# Lo matamos y quitamos de la escena
 		if _animation.animation != "dead_ground":

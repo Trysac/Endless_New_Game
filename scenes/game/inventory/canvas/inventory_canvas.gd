@@ -35,9 +35,9 @@ func _unhandled_input(event):
 	# Definimos escenas donde no debe aparecer el inventario
 	var scenes = ["Splash", "Init"]
 	# Obtenemos el nombre de la escena actual
-	var actual_scene = get_tree().get_current_scene().name
+	var current_scene = get_tree().get_current_scene().name
 	# Si estamos en las escenas definidas no mostramos Inventario
-	if scenes.find(actual_scene,0) > -1:
+	if scenes.find(current_scene,0) > -1:
 		return
 	
 	if event.is_action_pressed("inventory_close"):

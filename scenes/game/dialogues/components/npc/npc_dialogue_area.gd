@@ -17,7 +17,7 @@ signal response_selected(response: String)
 # Definición del inicio del diálogo
 @export var dialogue_start: String = "start"
 # Definición del template del diálogo
-@export var Balloon: PackedScene
+@export var balloon_scene: PackedScene
 # Definición del area del NPC
 @export var area: Area2D
 # Definición del area de salida del NPC
@@ -68,7 +68,7 @@ func _show_dialogue():
 	if _in_dialogue:
 		return
 	# Inicialización del template del diálogo
-	var balloon: Node = (Balloon).instantiate()
+	var balloon: Node = balloon_scene.instantiate()
 	# Agtregar el código inicaliazado a la escena
 	get_tree().current_scene.add_child(balloon)
 	# Abrir diálogo
