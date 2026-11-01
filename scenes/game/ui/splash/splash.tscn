@@ -10,7 +10,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Studio:modulate")
+tracks/0/path = NodePath("StudioLayer/Studio:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,29 +49,43 @@ _data = {
 [node name="Splash" type="Node2D"]
 script = ExtResource("1_roa58")
 
-[node name="Studio" type="Control" parent="."]
+[node name="StudioLayer" type="CanvasLayer" parent="."]
+
+[node name="Studio" type="Control" parent="StudioLayer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Title" type="Label" parent="Studio"]
-layout_mode = 0
-offset_top = 270.0
-offset_right = 1152.0
-offset_bottom = 318.0
+[node name="Title" type="Label" parent="StudioLayer/Studio"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -54.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.95, 0.72, 0.35, 1)
 theme_override_fonts/font = ExtResource("5_font")
 theme_override_font_sizes/font_size = 48
 text = "TRYSAC"
 horizontal_alignment = 1
 
-[node name="Subtitle" type="Label" parent="Studio"]
-layout_mode = 0
-offset_top = 340.0
-offset_right = 1152.0
-offset_bottom = 356.0
+[node name="Subtitle" type="Label" parent="StudioLayer/Studio"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 16.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_font")
 theme_override_font_sizes/font_size = 16
 text = "presents"
