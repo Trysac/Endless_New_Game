@@ -37,6 +37,8 @@ func _ready():
 
 
 func _unhandled_input(event):
+	if show_input_key.is_empty():
+		return
 	if event.is_action_pressed(show_input_key) and character and not _dialogue_is_visible:
 		_show_dialogue()
 
