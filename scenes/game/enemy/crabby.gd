@@ -269,4 +269,3 @@ func _on_enemy_animation_animation_finished():
 			_animation_effect.play("idle")
 			# Atacamos
 			_attack()
-	

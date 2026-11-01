@@ -3,7 +3,6 @@ extends RigidBody2D
 ##
 ## Setea la animación de la exploción
 
-
 # Precargamos la escena de la bomba
 var _bomb_effect = preload("res://scenes/game/levels/objects/damage_object/bomb/bomb_explotion.tscn")
 
@@ -12,7 +11,7 @@ var _bomb_effect = preload("res://scenes/game/levels/objects/damage_object/bomb/
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Esperamos 3 segundos para la exploción
+	# Esperamos 3 segundos para explottar
 	await get_tree().create_timer(3).timeout
 	# Quitamos la bomba
 	_animation.play("idle")

@@ -16,7 +16,8 @@ extends Area2D
 
 # Definimos el sprite animado de la moneda
 @onready var _animated_sprite = $AnimatedSprite2D
-@onready var _audio_player= $AudioStreamPlayer2D # Reproductor de audios
+@onready var _audio_player = $AudioStreamPlayer2D # Reproductor de audios
+@onready var _collider = $CollisionShape2D # Collider
 
 var _pickup_sound = preload("res://assets/sounds/pickup.mp3")
 
@@ -59,7 +60,7 @@ func do_animation():
 	else:
 		# Reproducimos la animación del diamante
 		_animated_sprite.play("diamond_taken")
-		
+
 	# Sumar los objetos recolectados
 	var type = "GoldCoin"
 	if animation == "silver_coin":
@@ -74,15 +75,9 @@ func do_animation():
 	HealthDashboard.add_points(type, 1) 
 
 
-func _on_area_entered(area):
-	# Validamos que la colisión es con el personaje principal 
-	if area.is_in_group("player"):
-		# Reproducimos la animación de la moneda recogida
-		do_animation()
-
-
 func _on_body_entered(body):
 	# Validamos que la colisión es con el personaje principal 
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and not _collider.disabled:
+		_collider.disabled = true
 		# Reproducimos la animación de la moneda recogida
 		do_animation()
