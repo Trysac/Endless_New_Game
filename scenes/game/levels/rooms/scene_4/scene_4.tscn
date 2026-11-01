@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bcyh735u5nvm4"]
+[gd_scene load_steps=15 format=3 uid="uid://bcyh735u5nvm4"]
 
-[ext_resource type="Texture2D" uid="uid://bj70klm41rhys" path="res://Fondo.jpg" id="1_fakuc"]
-[ext_resource type="PackedScene" uid="uid://d16s24mx1b377" path="res://scenes/game/inventory/canvas/inventory_canvas.tscn" id="2_khiyr"]
-[ext_resource type="PackedScene" uid="uid://dgvbhi1w2n47v" path="res://scenes/game/inventory/item_content/item_content.tscn" id="3_vsxcv"]
+[ext_resource type="Texture2D" uid="uid://cg6wkkuni8aq8" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/bg_image.png" id="1_bgimg"]
+[ext_resource type="Texture2D" uid="uid://baayrdcvulwo2" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/big_clouds.png" id="1_bigcl"]
+[ext_resource type="Texture2D" uid="uid://dpf6d4qhcotjt" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/small_cloud_1.png" id="1_smcl1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/additional_sky.png" id="1_sky"]
 [ext_resource type="TileSet" uid="uid://bx1rsqucrwm2i" path="res://assets/resources/bg_tile_set.tres" id="4_nj2f2"]
 [ext_resource type="PackedScene" uid="uid://ca3ueo0yewjov" path="res://scenes/game/characters/main_character/main_character.tscn" id="5_n02as"]
 [ext_resource type="PackedScene" uid="uid://bo37g7mv4j6pn" path="res://scenes/game/enemy/crabby.tscn" id="7_m3jo0"]
 [ext_resource type="PackedScene" uid="uid://8rbt5lmdrp0s" path="res://scenes/game/camera/camera.tscn" id="8_3ypbf"]
-[ext_resource type="AudioStream" uid="uid://bj1u5lpf8s3g8" path="res://Y2meta.app - Piratas del  caribe  cancion completa (128 kbps).mp3" id="8_q14y8"]
+[ext_resource type="AudioStream" path="res://assets/sounds/ship_hold.ogg" id="8_q14y8"]
 [ext_resource type="PackedScene" uid="uid://c36rtvjb7r5d1" path="res://scenes/game/levels/objects/red_potion/red_potion.tscn" id="9_hb7d5"]
 [ext_resource type="PackedScene" uid="uid://5ufjafjgartt" path="res://scenes/game/levels/objects/power_up/power_up_item.tscn" id="10_l0qju"]
 [ext_resource type="PackedScene" uid="uid://b5qjvfbte4svk" path="res://scenes/game/levels/objects/pickable_object/pickable_object.tscn" id="11_pldli"]
@@ -16,20 +17,39 @@
 
 [node name="scene_4" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(578.001, -137.425)
-scale = Vector2(0.300292, 0.261202)
-texture = ExtResource("1_fakuc")
+[node name="Background" type="Node2D" parent="."]
+z_index = -10
+modulate = Color(0.78, 0.72, 0.95, 1)
 
-[node name="InventoryCanvas" parent="Sprite2D" instance=ExtResource("2_khiyr")]
-position = Vector2(-60.5917, -529.415)
-scale = Vector2(0.757396, 0.870748)
+[node name="Sky" type="Sprite2D" parent="Background"]
+position = Vector2(580, -170)
+scale = Vector2(43, 40)
+texture = ExtResource("1_sky")
 
-[node name="MarginContainer" parent="Sprite2D" instance=ExtResource("3_vsxcv")]
-offset_left = -403.0
-offset_top = 717.0
-offset_right = -346.0
-offset_bottom = 769.0
+[node name="Horizon" type="Sprite2D" parent="Background"]
+position = Vector2(580, 232)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("1_bgimg")
+
+[node name="BigClouds" type="Sprite2D" parent="Background"]
+position = Vector2(580, 40)
+scale = Vector2(3, 3)
+texture = ExtResource("1_bigcl")
+
+[node name="Cloud1" type="Sprite2D" parent="Background"]
+position = Vector2(180, -260)
+scale = Vector2(2, 2)
+texture = ExtResource("1_smcl1")
+
+[node name="Cloud2" type="Sprite2D" parent="Background"]
+position = Vector2(860, -480)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_smcl1")
+
+[node name="Cloud3" type="Sprite2D" parent="Background"]
+position = Vector2(420, -620)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("1_smcl1")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(96.518, 207.736)
