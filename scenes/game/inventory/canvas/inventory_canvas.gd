@@ -4,6 +4,9 @@ extends Node2D
 ## Draws the inventory slots and adds, stacks and removes power-up items.
 
 
+# Number of slots; each holds one item type
+const SLOT_COUNT = 6
+
 # Slot frames, in grid order
 var _item_contents = []
 # Names of the items in the inventory, in slot order
@@ -19,7 +22,7 @@ var _item_objects = []
 
 func _ready():
 	# Build the six slot frames that items are placed into.
-	for n in 6:
+	for n in SLOT_COUNT:
 		var item = load("res://scenes/game/inventory/item_content/item_content.tscn").instantiate()
 		grid.add_child(item)
 		_item_contents.append(item)
@@ -33,14 +36,17 @@ func _unhandled_input(event):
 		return
 	
 	if event.is_action_pressed("inventory_close"):
+		# Closing an inventory that is not open must not unpause the game.
+		if not canvas.visible:
+			return
 		animation_player.play_backwards("down")
 		await animation_player.animation_finished
 		canvas.visible = false
 		get_tree().paused = false
 	elif event.is_action_pressed("inventory_open"):
-		get_tree().paused = true
-		if canvas.visible == true:
+		if canvas.visible:
 			return
+		get_tree().paused = true
 		canvas.visible = true
 		animation_player.play("down")
 		await animation_player.animation_finished
@@ -48,18 +54,23 @@ func _unhandled_input(event):
 
 # Adds one item by animation name (e.g. blue_potion or green_bottle).
 # An item already in the inventory just increases its count.
-func add_item_by_name(_name: String):
+# Returns false when the item could not be added (every slot is taken).
+func add_item_by_name(_name: String) -> bool:
 	var index = _item_object_names.find(_name)
 	if index >= 0:
 		var _num_available = _item_objects[index].get_num()
 		_num_available += 1
 		_item_objects[index].set_num(str(_num_available))
-		return
-	
+		return true
+
+	# A new item type needs a free slot.
+	if _item_object_names.size() >= _item_contents.size():
+		return false
+
 	var item_to_load = load("res://scenes/game/levels/objects/power_up/power_up_item.tscn")
-	
+
 	if not item_to_load:
-		return
+		return false
 	
 	# Place it in the next free slot.
 	index = _item_object_names.size()
@@ -69,6 +80,7 @@ func add_item_by_name(_name: String):
 	item.set_animation(_name)
 	_item_object_names.append(_name);
 	_item_objects.append(item)
+	return true
 
 
 # Removes one item by animation name (e.g. blue_potion or green_bottle).
