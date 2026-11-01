@@ -1,12 +1,14 @@
 extends Node2D
 ## Main menu.
 ##
-## Start/continue, fullscreen, volume sliders and the controls screen.
+## Start/continue, fullscreen, volume sliders, language and the controls screen.
 ## Escape toggles it once the game has started; while open it pauses the game.
 
 
 # Level loaded by the start button
 const PATH_LEVEL_1 = "res://scenes/game/levels/rooms/scene_1/scene_1.tscn"
+# Languages offered by the selector: locale and its name in that language
+const LANGUAGES = [["en", "English"], ["es", "Español"]]
 
 
 # Direction of each cloud layer's ping-pong animation
@@ -24,6 +26,7 @@ var _started = false # True once the first level has been loaded
 @onready var _slider_effects = $Main/CanvasLayer/Options/Sounds/Sliders/Effects/Slider/SliderEffects
 @onready var _main = $Main
 @onready var _game_controls = $Main/GameControls
+@onready var _language = $Main/CanvasLayer/Options/Controls/Language
 
 
 func _ready():
@@ -39,6 +42,7 @@ func _ready():
 	# Apply the sliders' initial volumes.
 	_on_slider_ambient_value_changed(_slider_ambient.value)
 	_on_slider_effects_value_changed(_slider_effects.value)
+	_setup_language_selector()
 	_toggle_show()
 	_game_controls.visible = false
 
@@ -85,7 +89,7 @@ func _toggle_show():
 		if camera:
 			camera.enabled = not visible
 	if _started:
-		_button.text = "Continuar"
+		_button.text = "MENU_CONTINUE"
 
 
 func _on_check_button_toggled(button_pressed):
@@ -129,3 +133,26 @@ func _on_show_controls_pressed():
 
 func _on_close_controls_pressed():
 	_game_controls.visible = false
+
+
+# Fills the language selector and selects the current language.
+func _setup_language_selector():
+	_language.clear()
+	for language in LANGUAGES:
+		_language.add_item(language[1])
+	_select_current_language()
+	_language.item_selected.connect(_on_language_selected)
+	# Follow language changes made elsewhere (e.g. loaded settings).
+	Settings.locale_changed.connect(func(_locale): _select_current_language())
+
+
+func _select_current_language():
+	var locale = TranslationServer.get_locale()
+	for i in LANGUAGES.size():
+		if locale.begins_with(LANGUAGES[i][0]):
+			_language.select(i)
+			return
+
+
+func _on_language_selected(index: int):
+	Settings.set_locale(LANGUAGES[index][0])

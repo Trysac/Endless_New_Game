@@ -88,7 +88,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_font")
 theme_override_font_sizes/font_size = 16
-text = "presents"
+text = "SPLASH_PRESENTS"
 horizontal_alignment = 1
 
 [node name="PixelFrog" type="Sprite2D" parent="."]
@@ -103,7 +103,7 @@ offset_right = 400.0
 offset_bottom = 66.0
 theme_override_fonts/font = ExtResource("5_font")
 theme_override_font_sizes/font_size = 12
-text = "Art: Treasure Hunters & Pirate Bomb by Pixel Frog"
+text = "SPLASH_ART_CREDIT"
 horizontal_alignment = 1
 
 [node name="AnimationPlayerStudio" type="AnimationPlayer" parent="."]

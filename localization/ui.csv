@@ -1,0 +1,33 @@
+keys,en,es
+MENU_TITLE_START,START,INICIO
+MENU_PLAY,PLAY,INICIAR
+MENU_CONTINUE,CONTINUE,CONTINUAR
+MENU_TITLE_FULLSCREEN,FULL\nSCREEN,PANTALLA\nCOMPLETA
+MENU_TITLE_SOUND,SOUND,SONIDOS
+MENU_AMBIENT,Ambience,Ambiente
+MENU_EFFECTS,Effects,Efectos
+MENU_CONTROLS,Controls,Controles
+MENU_LANGUAGE,Language,Idioma
+CONTROLS_TITLE,Controls,Controles
+CONTROLS_MOVE,Move:,Movimiento:
+CONTROLS_MOVE_KEYS,Arrow keys ← →,Flechas ← y →
+CONTROLS_JUMP,Jump:,Salto:
+CONTROLS_JUMP_KEYS,Space,Espacio
+CONTROLS_ATTACK,Attack:,Ataque:
+CONTROLS_ATTACK_KEYS,X key,Tecla X
+CONTROLS_BOMB,Throw bomb:,Lanzar bomba:
+CONTROLS_BOMB_KEYS,B key,Tecla B
+CONTROLS_INTERACT,Shop:,Mercado:
+CONTROLS_INTERACT_KEYS,M key,Tecla M
+CONTROLS_INVENTORY,Inventory:,Inventario:
+CONTROLS_INVENTORY_KEYS,Mouse wheel,Rueda del ratón
+CONTROLS_MENU,Menu:,Menú:
+CONTROLS_MENU_KEYS,Esc,Escape
+INVENTORY_TITLE,Inventory,Inventario
+INVENTORY_USE_ITEM,Use this item?,¿Usar item?
+SPLASH_PRESENTS,presents,presenta
+SPLASH_ART_CREDIT,Art: Treasure Hunters & Pirate Bomb by Pixel Frog,Arte: Treasure Hunters y Pirate Bomb de Pixel Frog
+SCENE_3_TO_BE_CONTINUED,To be continued...,Continuará...
+CHARACTER_GRAN,Grand Pirate,Gran Pirata
+CHARACTER_PIRATA,Pirate Brokebeard,Pirata Malaplata
+CHARACTER_SELENA,Selena the Whale,Selena la Ballena

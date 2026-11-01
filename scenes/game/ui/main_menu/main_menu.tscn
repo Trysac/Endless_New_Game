@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://ln85llv8md7"]
+[gd_scene load_steps=55 format=3 uid="uid://ln85llv8md7"]
 
 [ext_resource type="Script" path="res://scenes/game/ui/main_menu/main_menu.gd" id="1_g1i31"]
 [ext_resource type="Texture2D" uid="uid://c8apilaqosli4" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/additional_sky.png" id="2_66173"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bqcbpn2cey2eg" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/big_banner/16.png" id="31_76hrj"]
 [ext_resource type="Texture2D" uid="uid://b1ffrt80ib4na" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/big_banner/17.png" id="32_sxqtv"]
 [ext_resource type="Texture2D" uid="uid://mqsgcbqwnnsq" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/big_banner/18.png" id="33_14dux"]
+[ext_resource type="Script" uid="uid://dmraf376jsoev" path="res://scenes/game/ui/pixel_text/pixel_text.gd" id="34_pxtxt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4u6xb"]
 animations = [{
@@ -109,146 +110,8 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xlum2"]
-load_path = "res://.godot/imported/text.png-c60f3c71437097c445e5745800ab64ed.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0nh0"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(44, 84, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l4uxy"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(24, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fftmn"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(44, 84, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xq1pu"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(44, 64, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n0yw2"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(44, 84, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u8gxc"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(44, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p2vnd"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(24, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hbjci"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(24, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pvw8h"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(24, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bh38k"]
-atlas = SubResource("CompressedTexture2D_xlum2")
-region = Rect2(24, 104, 10, 11)
-
 [sub_resource type="Theme" id="Theme_f6sn6"]
 default_font_size = 24
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q3nub"]
-load_path = "res://.godot/imported/text.png-c60f3c71437097c445e5745800ab64ed.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_roilr"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(64, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4p0m1"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(4, 64, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3bk8"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(24, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rovxd"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(24, 4, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jiknw"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(4, 64, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ha8t5"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(104, 84, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4qguk"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(104, 84, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ahbbe"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(4, 64, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ydpge"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(44, 64, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ddbbl"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(44, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xc4ep"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(4, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qogtb"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(64, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3i8u"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(104, 84, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3qber"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(84, 64, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_46ho6"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(24, 4, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5py4y"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(4, 64, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y2l5w"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(4, 4, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ubua"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(44, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vjfv"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(24, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1akk5"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(44, 84, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aoa2w"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(64, 64, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1q23x"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(44, 104, 10, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c50bg"]
-atlas = SubResource("CompressedTexture2D_q3nub")
-region = Rect2(4, 4, 10, 11)
 
 [sub_resource type="Theme" id="Theme_6e42f"]
 default_font_size = 30
@@ -462,78 +325,11 @@ offset_bottom = -130.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Letter1" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
+[node name="Title" type="Control" parent="Main/CanvasLayer/Options/Init"]
 layout_mode = 0
-offset_right = 28.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_u0nh0")
-
-[node name="Letter2" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-layout_mode = 0
-offset_left = 30.0
-offset_right = 58.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_l4uxy")
-
-[node name="Letter3" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-layout_mode = 0
-offset_left = 60.0
-offset_right = 88.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_fftmn")
-
-[node name="Letter4" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-layout_mode = 0
-offset_left = 90.0
-offset_right = 118.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_xq1pu")
-
-[node name="Letter5" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-layout_mode = 0
-offset_left = 120.0
-offset_right = 148.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_n0yw2")
-
-[node name="Letter6" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-layout_mode = 0
-offset_left = 150.0
-offset_right = 178.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_u8gxc")
-
-[node name="Letter7" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-visible = false
-layout_mode = 0
-offset_left = 180.0
-offset_right = 208.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_p2vnd")
-
-[node name="Letter8" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-visible = false
-layout_mode = 0
-offset_left = 210.0
-offset_right = 238.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_hbjci")
-
-[node name="Letter9" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-visible = false
-layout_mode = 0
-offset_left = 240.0
-offset_right = 268.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_pvw8h")
-
-[node name="Letter10" type="TextureRect" parent="Main/CanvasLayer/Options/Init"]
-visible = false
-layout_mode = 0
-offset_left = 270.0
-offset_right = 298.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_bh38k")
+anchors_preset = 0
+script = ExtResource("34_pxtxt")
+text = "MENU_TITLE_START"
 
 [node name="Button" type="Control" parent="Main/CanvasLayer/Options/Init"]
 anchors_preset = 0
@@ -566,7 +362,7 @@ layout_mode = 0
 offset_right = 189.0
 offset_bottom = 42.0
 theme = SubResource("Theme_f6sn6")
-text = "INICIAR"
+text = "MENU_PLAY"
 flat = true
 icon_alignment = 1
 
@@ -577,123 +373,11 @@ offset_top = -25.0
 offset_right = -360.0
 offset_bottom = 15.0
 
-[node name="Letter1" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
+[node name="Title" type="Control" parent="Main/CanvasLayer/Options/Fullscreen"]
 layout_mode = 0
-offset_right = 28.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_roilr")
-
-[node name="Letter2" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 30.0
-offset_right = 58.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_4p0m1")
-
-[node name="Letter3" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 60.0
-offset_right = 88.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_r3bk8")
-
-[node name="Letter4" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 90.0
-offset_right = 118.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_rovxd")
-
-[node name="Letter5" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 120.0
-offset_right = 148.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_jiknw")
-
-[node name="Letter6" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 150.0
-offset_right = 178.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_ha8t5")
-
-[node name="Letter7" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 180.0
-offset_right = 208.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_4qguk")
-
-[node name="Letter8" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 210.0
-offset_right = 238.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_ahbbe")
-
-[node name="Letter9" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_top = 41.0
-offset_right = 28.0
-offset_bottom = 82.0
-texture = SubResource("AtlasTexture_ydpge")
-
-[node name="Letter10" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 41.0
-offset_right = 58.0
-offset_bottom = 82.0
-texture = SubResource("AtlasTexture_ddbbl")
-
-[node name="Letter11" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 41.0
-offset_right = 88.0
-offset_bottom = 82.0
-texture = SubResource("AtlasTexture_xc4ep")
-
-[node name="Letter12" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 90.0
-offset_top = 41.0
-offset_right = 118.0
-offset_bottom = 82.0
-texture = SubResource("AtlasTexture_qogtb")
-
-[node name="Letter13" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 41.0
-offset_right = 148.0
-offset_bottom = 82.0
-texture = SubResource("AtlasTexture_s3i8u")
-
-[node name="Letter14" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 41.0
-offset_right = 178.0
-offset_bottom = 82.0
-texture = SubResource("AtlasTexture_3qber")
-
-[node name="Letter15" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 180.0
-offset_top = 41.0
-offset_right = 208.0
-offset_bottom = 82.0
-texture = SubResource("AtlasTexture_46ho6")
-
-[node name="Letter16" type="TextureRect" parent="Main/CanvasLayer/Options/Fullscreen"]
-layout_mode = 0
-offset_left = 210.0
-offset_top = 41.0
-offset_right = 238.0
-offset_bottom = 82.0
-texture = SubResource("AtlasTexture_5py4y")
+anchors_preset = 0
+script = ExtResource("34_pxtxt")
+text = "MENU_TITLE_FULLSCREEN"
 
 [node name="CheckButton" type="CheckButton" parent="Main/CanvasLayer/Options/Fullscreen"]
 layout_mode = 0
@@ -711,77 +395,11 @@ offset_top = 125.0
 offset_right = -360.0
 offset_bottom = 165.0
 
-[node name="Letter1" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
+[node name="Title" type="Control" parent="Main/CanvasLayer/Options/Sounds"]
 layout_mode = 0
-offset_right = 28.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_y2l5w")
-
-[node name="Letter2" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-layout_mode = 0
-offset_left = 30.0
-offset_right = 58.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_8ubua")
-
-[node name="Letter3" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-layout_mode = 0
-offset_left = 60.0
-offset_right = 88.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_5vjfv")
-
-[node name="Letter4" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-layout_mode = 0
-offset_left = 90.0
-offset_right = 118.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_1akk5")
-
-[node name="Letter5" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-layout_mode = 0
-offset_left = 120.0
-offset_right = 148.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_aoa2w")
-
-[node name="Letter6" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-layout_mode = 0
-offset_left = 150.0
-offset_right = 178.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_1q23x")
-
-[node name="Letter7" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-layout_mode = 0
-offset_left = 180.0
-offset_right = 208.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_c50bg")
-
-[node name="Letter8" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-visible = false
-layout_mode = 0
-offset_left = 210.0
-offset_right = 238.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_y2l5w")
-
-[node name="Letter9" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-visible = false
-layout_mode = 0
-offset_left = 240.0
-offset_right = 268.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_y2l5w")
-
-[node name="Letter10" type="TextureRect" parent="Main/CanvasLayer/Options/Sounds"]
-visible = false
-layout_mode = 0
-offset_left = 270.0
-offset_right = 298.0
-offset_bottom = 41.0
-texture = SubResource("AtlasTexture_y2l5w")
+anchors_preset = 0
+script = ExtResource("34_pxtxt")
+text = "MENU_TITLE_SOUND"
 
 [node name="Sliders" type="Control" parent="Main/CanvasLayer/Options/Sounds"]
 anchors_preset = 0
@@ -799,7 +417,7 @@ layout_mode = 0
 offset_right = 161.0
 offset_bottom = 40.0
 theme = SubResource("Theme_6e42f")
-text = "Ambiente"
+text = "MENU_AMBIENT"
 scroll_active = false
 shortcut_keys_enabled = false
 
@@ -851,7 +469,7 @@ layout_mode = 0
 offset_right = 161.0
 offset_bottom = 40.0
 theme = SubResource("Theme_6e42f")
-text = "Efectos"
+text = "MENU_EFFECTS"
 scroll_active = false
 shortcut_keys_enabled = false
 
@@ -905,7 +523,17 @@ offset_right = 244.0
 offset_bottom = 47.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 24
-text = "Controles"
+text = "MENU_CONTROLS"
+
+[node name="Language" type="OptionButton" parent="Main/CanvasLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 264.0
+offset_right = 432.0
+offset_bottom = 47.0
+tooltip_text = "MENU_LANGUAGE"
+theme_override_fonts/font = ExtResource("27_eb3si")
+theme_override_font_sizes/font_size = 16
+alignment = 1
 
 [node name="GameControls" type="CanvasLayer" parent="Main"]
 
@@ -1014,7 +642,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 50
-text = "Controles"
+text = "CONTROLS_TITLE"
 
 [node name="Row1" type="Control" parent="Main/GameControls/Background/Texts"]
 anchors_preset = 0
@@ -1024,11 +652,11 @@ offset_bottom = 40.0
 [node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row1"]
 layout_mode = 0
 offset_left = -400.0
-offset_right = -158.0
+offset_right = -60.0
 offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 22
-text = "Movimiento:"
+text = "CONTROLS_MOVE"
 
 [node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row1"]
 layout_mode = 0
@@ -1037,22 +665,22 @@ offset_right = 490.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 20
-text = "Flechas ← y → "
+text = "CONTROLS_MOVE_KEYS"
 
 [node name="Row2" type="Control" parent="Main/GameControls/Background/Texts"]
 anchors_preset = 0
-offset_top = 60.0
+offset_top = 50.0
 offset_right = 40.0
-offset_bottom = 100.0
+offset_bottom = 90.0
 
 [node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row2"]
 layout_mode = 0
 offset_left = -400.0
-offset_right = -158.0
+offset_right = -60.0
 offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 22
-text = "Salto:"
+text = "CONTROLS_JUMP"
 
 [node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row2"]
 layout_mode = 0
@@ -1061,22 +689,22 @@ offset_right = 490.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 20
-text = "Espacio"
+text = "CONTROLS_JUMP_KEYS"
 
 [node name="Row3" type="Control" parent="Main/GameControls/Background/Texts"]
 anchors_preset = 0
-offset_top = 120.0
+offset_top = 100.0
 offset_right = 40.0
-offset_bottom = 160.0
+offset_bottom = 140.0
 
 [node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row3"]
 layout_mode = 0
 offset_left = -400.0
-offset_right = -158.0
+offset_right = -60.0
 offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 22
-text = "Ataque:"
+text = "CONTROLS_ATTACK"
 
 [node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row3"]
 layout_mode = 0
@@ -1085,22 +713,22 @@ offset_right = 490.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 20
-text = "Tecla X"
+text = "CONTROLS_ATTACK_KEYS"
 
 [node name="Row4" type="Control" parent="Main/GameControls/Background/Texts"]
 anchors_preset = 0
-offset_top = 180.0
+offset_top = 150.0
 offset_right = 40.0
-offset_bottom = 220.0
+offset_bottom = 190.0
 
 [node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row4"]
 layout_mode = 0
 offset_left = -400.0
-offset_right = -158.0
+offset_right = -60.0
 offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 22
-text = "Mercado:"
+text = "CONTROLS_BOMB"
 
 [node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row4"]
 layout_mode = 0
@@ -1109,22 +737,22 @@ offset_right = 490.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 20
-text = "Tecla M"
+text = "CONTROLS_BOMB_KEYS"
 
 [node name="Row5" type="Control" parent="Main/GameControls/Background/Texts"]
 anchors_preset = 0
-offset_top = 240.0
+offset_top = 200.0
 offset_right = 40.0
-offset_bottom = 280.0
+offset_bottom = 240.0
 
 [node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row5"]
 layout_mode = 0
 offset_left = -400.0
-offset_right = -158.0
+offset_right = -60.0
 offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 22
-text = "Iventario:"
+text = "CONTROLS_INTERACT"
 
 [node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row5"]
 layout_mode = 0
@@ -1133,22 +761,22 @@ offset_right = 490.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 20
-text = "Rueda del ratón"
+text = "CONTROLS_INTERACT_KEYS"
 
 [node name="Row6" type="Control" parent="Main/GameControls/Background/Texts"]
 anchors_preset = 0
-offset_top = 300.0
+offset_top = 250.0
 offset_right = 40.0
-offset_bottom = 340.0
+offset_bottom = 290.0
 
 [node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row6"]
 layout_mode = 0
 offset_left = -400.0
-offset_right = -158.0
+offset_right = -60.0
 offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 22
-text = "Menú:"
+text = "CONTROLS_INVENTORY"
 
 [node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row6"]
 layout_mode = 0
@@ -1157,7 +785,31 @@ offset_right = 490.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 20
-text = "Escape"
+text = "CONTROLS_INVENTORY_KEYS"
+
+[node name="Row7" type="Control" parent="Main/GameControls/Background/Texts"]
+anchors_preset = 0
+offset_top = 300.0
+offset_right = 40.0
+offset_bottom = 340.0
+
+[node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row7"]
+layout_mode = 0
+offset_left = -400.0
+offset_right = -60.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("27_eb3si")
+theme_override_font_sizes/font_size = 22
+text = "CONTROLS_MENU"
+
+[node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row7"]
+layout_mode = 0
+offset_left = -50.0
+offset_right = 490.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("27_eb3si")
+theme_override_font_sizes/font_size = 20
+text = "CONTROLS_MENU_KEYS"
 
 [node name="Close" type="Control" parent="Main/GameControls/Background"]
 layout_mode = 1
