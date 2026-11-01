@@ -20,7 +20,7 @@ func fire():
 
 func _on_animated_sprite_2d_frame_changed():
 	if _cannon_animation.frame == 3:
-		var ball = "scenes/game/levels/objects/damage_object/cannon/cannon_ball.tscn"
+		var ball = "res://scenes/game/levels/objects/damage_object/cannon/cannon_ball.tscn"
 		new_ball = load(ball).instantiate()
 		new_ball.position.x = -20
 		self.add_child(new_ball)
