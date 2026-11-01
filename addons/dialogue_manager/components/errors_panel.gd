@@ -2,10 +2,7 @@
 extends HBoxContainer
 
 
-signal error_pressed(line_number)
-
-
-const DialogueConstants = preload("res://addons/dialogue_manager/constants.gd")
+signal error_pressed(line_number: int)
 
 
 @onready var error_button: Button = $ErrorButton
@@ -33,7 +30,7 @@ var errors: Array = []:
 func _ready() -> void:
 	apply_theme()
 	hide()
-	
+
 
 ## Set up colors and icons
 func apply_theme() -> void:
@@ -46,7 +43,7 @@ func apply_theme() -> void:
 
 ## Move the error index to match a given line
 func show_error_for_line_number(line_number: int) -> void:
-	for i in range(0, errors.size()):
+	for i: int in range(0, errors.size()):
 		if errors[i].line_number == line_number:
 			self.error_index = i
 
@@ -57,12 +54,12 @@ func show_error() -> void:
 		hide()
 	else:
 		show()
-		count_label.text = DialogueConstants.translate("n_of_n").format({ index = error_index + 1, total = errors.size() })
-		var error = errors[error_index]
-		error_button.text = DialogueConstants.translate("errors.line_and_message").format({ line = error.line_number + 1, column = error.column_number, message = DialogueConstants.get_error_message(error.error) })
+		count_label.text = DMConstants.translate(&"n_of_n").format({ index = error_index + 1, total = errors.size() })
+		var error: DMError = errors[error_index]
+		error_button.text = DMConstants.translate(&"errors.line_and_message").format({ line = error.line_number, column = error.column_number, message = DMConstants.get_error_message(error.error) })
 
 
-### Signals
+#region Signals
 
 
 func _on_errors_panel_theme_changed() -> void:
@@ -70,7 +67,7 @@ func _on_errors_panel_theme_changed() -> void:
 
 
 func _on_error_button_pressed() -> void:
-	emit_signal("error_pressed", errors[error_index].line_number, errors[error_index].column_number)
+	error_pressed.emit(errors[error_index].line_number, errors[error_index].column_number)
 
 
 func _on_previous_button_pressed() -> void:
@@ -81,3 +78,6 @@ func _on_previous_button_pressed() -> void:
 func _on_next_button_pressed() -> void:
 	self.error_index += 1
 	_on_error_button_pressed()
+
+
+#endregion
