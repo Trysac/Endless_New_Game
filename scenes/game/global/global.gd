@@ -1,11 +1,9 @@
 extends Node
-## Clase que guarda las variables globales
-##
-## Se definen las variables globales que van a ser accesibles en todo el juego
+## Global game state shared across scenes.
 
 
-# Tipo de ataque aplicado
+# Active sword power-up: "normal", "blue_potion" or "green_bottle"
 var attack_effect = "normal"
 
-# Numero de ataques disponibles
+# Power-up attacks left before the effect wears off
 var special_attacks_left = 0

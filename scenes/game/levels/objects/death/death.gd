@@ -1,11 +1,10 @@
 extends Area2D
-## Clase que quita la vida al personaje principal
+## Death zone.
 ##
-## Quita la vida al personaje principal
+## Kills the player on contact.
 
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
-		# Quitamos vidas
 		var _move_script = body.get_node("MainCharacterMovement")
 		_move_script.hit(100)

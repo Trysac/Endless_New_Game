@@ -1,54 +1,44 @@
 extends Node2D
-## Clase de Inventario 
-## 
-## Renderización de celdas y objetos de inventario, funcionalidades de agregar nuevos objetos y remover los objetos de inventario ## Revisión de objetos puestos en personaje principal
+## Inventory.
+##
+## Draws the inventory slots and adds, stacks and removes power-up items.
 
 
-# Referencia a todas las "cajas", que contienen objetos
+# Slot frames, in grid order
 var _item_contents = []
-# Referencia de todos los nombres de objetos que hay en el inventario
+# Names of the items in the inventory, in slot order
 var _item_object_names = []
-# Referencia de los items
+# Item nodes, in slot order
 var _item_objects = []
 
 
-@onready var canvas = $CanvasLayer # Canvas principal
-@onready var animation_player = $CanvasLayer/AnimationPlayer # Player
-@onready var grid = $CanvasLayer/Inventory/GridContainer # Grid al cual se añaden elementos
+@onready var canvas = $CanvasLayer
+@onready var animation_player = $CanvasLayer/AnimationPlayer
+@onready var grid = $CanvasLayer/Inventory/GridContainer
 
 
-# Función de inicialización
 func _ready():
-	# Cada "item" recolectado, se agregará dentro de un "contendor"
-	# Este contenedor es un "sprite" que tiene una imagen con un "borde" simulando un marco
-	# Dentro de este "marco" es donde se agregarán los "items"
-	# Para evitar agregar todos los nodos manualmente (6 nodos en este caso), se hizo un ciclo
-	#  que los agregará dinámicamente.
+	# Build the six slot frames that items are placed into.
 	for n in 6:
 		var item = load("res://scenes/game/inventory/item_content/item_content.tscn").instantiate()
-		grid.add_child(item) # Agregamos el nodo "marco" a un grid
-		_item_contents.append(item) # Guardamos la referencia del nodo "marco" en un array
+		grid.add_child(item)
+		_item_contents.append(item)
 
 
-# Función para detectar eventos del teclado o ratón
 func _unhandled_input(event):
-	# Definimos escenas donde no debe aparecer el inventario
+	# The inventory is not available on these screens.
 	var scenes = ["Splash", "Init"]
-	# Obtenemos el nombre de la escena actual
 	var current_scene = get_tree().get_current_scene().name
-	# Si estamos en las escenas definidas no mostramos Inventario
 	if scenes.find(current_scene,0) > -1:
 		return
 	
 	if event.is_action_pressed("inventory_close"):
-		# Cuando deslizamos la rueda del ratón hacia arriba, ocultamos el inventario
 		animation_player.play_backwards("down")
 		await animation_player.animation_finished
 		canvas.visible = false
 		get_tree().paused = false
 	elif event.is_action_pressed("inventory_open"):
 		get_tree().paused = true
-		# Cuando deslizamos la rueda del ratón hacia abajo, mostramos el inventario
 		if canvas.visible == true:
 			return
 		canvas.visible = true
@@ -56,30 +46,22 @@ func _unhandled_input(event):
 		await animation_player.animation_finished
 
 
-# Función que añade un item al inventario
-# Añadir significa, cargar un elemento (escena) y agregarlo al grid
-# El nombre del item, tiene que existir como una escena
-# Ejemplo del nombre: blue_potion o green_bottle
+# Adds one item by animation name (e.g. blue_potion or green_bottle).
+# An item already in the inventory just increases its count.
 func add_item_by_name(_name: String):
-	# Si el item ya existe (ya está agregado), se termina la función
 	var index = _item_object_names.find(_name)
 	if index >= 0:
-		# Obtenemos el numero disponible del objeto
 		var _num_available = _item_objects[index].get_num()
-		# Sumamos uno
 		_num_available += 1
-		# Actualizamos nuevo número
 		_item_objects[index].set_num(str(_num_available))
 		return
 	
-	# Cargamos el recurso
 	var item_to_load = load("res://scenes/game/levels/objects/power_up/power_up_item.tscn")
 	
-	# Si no existe el recurso, se termina la función
 	if not item_to_load:
 		return
 	
-	# Agregamos el item al grid, y guardamos las referencias (para poder eliminarlo si es requerido)
+	# Place it in the next free slot.
 	index = _item_object_names.size()
 	var item = item_to_load.instantiate()
 	var item_content = _item_contents[index]
@@ -89,42 +71,34 @@ func add_item_by_name(_name: String):
 	_item_objects.append(item)
 
 
-# Se elimina un elemento del iventario
-# Eliminar significa, buscar el "nodo" y eliminarlo del grid principal
-# Al eliminar el nodo, todos los demás nodos posteriores, se moverán "hacia atrás"
-# para evitar dejar "espacios vacíos"
-# Ejemplo del nombre: blue_potion o green_bottle
+# Removes one item by animation name (e.g. blue_potion or green_bottle).
+# When its count reaches zero the item is freed and later items shift back
+# one slot so no gaps are left.
 func remove_item_by_name(_name: String):
 	var index = _item_object_names.find(_name)
 	if index >= 0:
-		var item_content = _item_contents[index] # Nodo que es un "cuadro" contenedor del item recolectado
-		var item = _item_objects[index] # Nodo que tiene el item recolectado
-		# Ajustamos la cantidad disponible
+		var item_content = _item_contents[index]
+		var item = _item_objects[index]
 		var _num_available = _item_objects[index].get_num()
 		_num_available -= 1 
 		if _num_available > 0:
 			_item_objects[index].set_num(str(_num_available))
 			return
 		else:
-			# Removemos el nodo del item
 			item_content.remove_child(item)
-			item.queue_free(); # Liberamos memoria (porque no lo vamos a volver a usar)
+			item.queue_free();
 			
-			# Movemos todos los items "hacia atrás" para que ocupen el espacio vacío
 			var size = _item_objects.size()
 			for n in range(index, size - 1):
 				var current_content = _item_contents[n]
 				var next_content = _item_contents[n + 1]
 				var next_item = _item_objects[n + 1];
-				# Removemos el item "next_item" (pero no liberamos memoria)
+				# Move the next item into this slot (reparent, do not free).
 				next_content.remove_child(next_item);
-				# El item removido anteriormente, se reutiliza (agrega) en otro nodo
 				current_content.add_child(next_item);
 			
-			# Quitamos el nombre del listado de "nombres de items"
 			_item_object_names.remove_at(index)
 			
-			# Quitamos el nodo, del listado de nodos tipo item
 			_item_objects.remove_at(index)
 
 

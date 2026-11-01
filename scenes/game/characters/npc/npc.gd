@@ -1,61 +1,55 @@
 extends CharacterBody2D
-## Clase que controla el comportamiento de NPC
+## NPC behaviour.
 ##
-## Controla los dialogos con el personaje principal, escucha coliciones
+## Forwards dialogue calls to its NpcDialogueArea child.
 
 
-# Area de contacto, para mostrar el diálogo
 var _npc_dialogue_area: Node2D
 
 @onready var _collision = $CollisionShape2D
 @onready var _animation = $Npc
 
-# Función de inicialización
+
 func _ready():
-	_npc_dialogue_area = find_child("NpcDialogueArea") # Buscamos el area de diálogo
+	_npc_dialogue_area = find_child("NpcDialogueArea")
 
 
 func _physics_process(delta):
-	# Agregamos la velocidad
+	# Fall until landing, then stop simulating.
 	velocity.y += 1000 * delta
-	move_and_slide() # Agregamos kinematica
+	move_and_slide()
 	if is_on_floor():
-		# Apagamos la física
 		set_physics_process(false)
-	
 
-# DOCUMENTACIÓN (señales): https://docs.google.com/document/d/1bbroyXp11L4_FpHpqA-RckvFLRv3UOE-hmQdwtx27eo/edit?usp=drive_link
-# Se usa para poder "escuchar" cuando el diálgo finaliza
+
+# Connects a callback to the end of the dialogue.
 func on_dialogue_ended(fn):
 	if _npc_dialogue_area:
 		_npc_dialogue_area.on_dialogue_ended(fn)
 
 
-# Se usa para poder "escuchar" cuando se selecciona una respuesta en el diálogo
+# Connects a callback to the response chosen in the dialogue.
 func on_response_selected(fn):
 	if _npc_dialogue_area:
 		_npc_dialogue_area.on_response_selected(fn)
 
 
-# Función que deshabilita las colisiones del NPC y también la física
+# Disables (or enables) both the NPC's collision and its physics.
 func set_collision_disabled(disabled: bool):
 	set_physics_process(not disabled)
 	_collision.disabled = disabled
 
 
-# Función para rotar la animación del NPC
 func flip_h(flip: bool):
 	_animation.flip_h = flip
 
 
-# Seteamos un nuevo diálogo y lo mostramos
+# Sets a new dialogue and shows it.
 func set_and_show_dialogue(resource: DialogueResource):
 	if _npc_dialogue_area:
 		_npc_dialogue_area.set_and_show_dialogue(resource)
 
 
-# Seteamos un nuevo diálogo
 func set_dialogue(resource: DialogueResource):
 	if _npc_dialogue_area:
 		_npc_dialogue_area.set_dialogue(resource)
-

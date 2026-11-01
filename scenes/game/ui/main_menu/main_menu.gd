@@ -1,22 +1,19 @@
 extends Node2D
-## Script de menú principal.
+## Main menu.
 ##
-## Controlará el acceso al menú principal y a las acciones del mismo (iniciar, pantalla completa y volumen de sonidos)
-## Menú principal: https://docs.google.com/document/d/17z6OpRIyuTMBbdYGBseTlv9aqLGkM_OUsWnzCGrWyJs/edit?usp=sharing
-## Pantalla completa e iniciar juego: https://docs.google.com/document/d/1iXAeyJgSInJz_jI_zl1tHWvQ12DSI-W2FpcLWdxGre8/edit?usp=sharing
-## Control de sonidos: https://docs.google.com/document/d/1iF9UeO_rtx2qWtMxjB6LienO-kQPx3blTCgJw-aACx4/edit?usp=sharing
+## Start/continue, fullscreen, volume sliders and the controls screen.
+## Escape toggles it once the game has started; while open it pauses the game.
 
 
-# Nivel inicial que se cargará al presionar "Iniciar" en el menú principal
+# Level loaded by the start button
 const PATH_LEVEL_1 = "res://scenes/game/levels/rooms/scene_1/scene_1.tscn"
 
 
-# Variables para animación de nubes
+# Direction of each cloud layer's ping-pong animation
 var _parallax_1_normal = true
 var _parallax_2_normal = false
-var _started = false # Indica si ya iniciamos el juego (entramos al primer nivel)
+var _started = false # True once the first level has been loaded
 
-# Referencias a nodos de la escena
 @onready var _anim_water = $Main/World/Background/AnimWater
 @onready var _anim_ship = $Main/World/Ship/Ship
 @onready var _anim_flag = $Main/World/Ship/Flag
@@ -29,36 +26,29 @@ var _started = false # Indica si ya iniciamos el juego (entramos al primer nivel
 @onready var _game_controls = $Main/GameControls
 
 
-# Función de inicialización
 func _ready():
-	# Al cargar hacemos esta escena invisible
 	visible = true
-	# Impide que esta escena se ponga en pausa
+	# Keep running while the tree is paused.
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	HealthDashboard.visible = false
-	# Iniciamoa con las animaciones
 	_anim_water.play()
 	_anim_ship.play()
 	_anim_flag.play()
 	_parallax_1.play("parallax1")
 	_parallax_2.play_backwards("parallax1")
-	# Iniciar volumen de sonidos en base al valor de los "sliders"
+	# Apply the sliders' initial volumes.
 	_on_slider_ambient_value_changed(_slider_ambient.value)
 	_on_slider_effects_value_changed(_slider_effects.value)
 	_toggle_show()
-	# Ocultamos el canvas de los controles
 	_game_controls.visible = false
 
-# Detecta eventos de teclado y ratón
 func _unhandled_input(event):
 	if event.is_action_released("ui_cancel") and _started:
-		# Al presionar "scape" mostramos/ocultamos el menú (solo si hemos "iniciado")
 		_toggle_show()
 
 
-# Se ejecuta cuando finaliza la animación de las nubes #1
+# Ping-pong the cloud layers forever.
 func _on_parallax_1_animation_finished(_anim_name):
-	# Hace animación de izquierda a derecha indefinidamente
 	if _parallax_1_normal:
 		_parallax_1.play_backwards("parallax1")
 		_parallax_1_normal = false
@@ -67,9 +57,7 @@ func _on_parallax_1_animation_finished(_anim_name):
 		_parallax_1_normal = true
 
 
-# Se ejecuta cuando finaliza la animación de las nubes #2
 func _on_parallax_2_animation_finished(_anim_name):
-	# Hace animación de izquierda a derecha indefinidamente
 	if _parallax_2_normal:
 		_parallax_2.play_backwards("parallax1")
 		_parallax_2_normal = false
@@ -78,33 +66,28 @@ func _on_parallax_2_animation_finished(_anim_name):
 		_parallax_2_normal = true
 
 
-# Función que mostrará u ocultará el menú principal, desmontando nodos, pausando y controlando
-# cámaras de los niveles
+# Shows or hides the menu: mounts its nodes, pauses the game and toggles
+# the current level's camera.
 func _toggle_show():
-	visible = not visible # Mostramos/Ocultamos el menu
-	HealthDashboard.visible = not visible # Mostramos/Ocultamos el tablero de salud
-	# Agregar o remover el nodo principal del menú principal
+	visible = not visible
+	HealthDashboard.visible = not visible
 	if visible:
 		self.add_child(_main)
 	else:
 		self.remove_child(_main)
 	
-	get_tree().paused = visible # Si estamos en el menú, pausamos
+	get_tree().paused = visible
 	
-	# Buscamos el nodo principal del nivel actual "Main"
+	# Levels name their root node "Main".
 	var main_node = get_tree().get_root().get_node("Main")
 	if main_node:
-		# Buscamos la cámara del nivel actual "Camera2D"
 		var camera = main_node.find_child("Camera2D")
 		if camera:
-			# La cámara la habilitamos o deshabilitamos
 			camera.enabled = not visible
-	# Si ya hemos iniciado, cambiamos el texto del botón a "Continuar"
 	if _started:
 		_button.text = "Continuar"
 
 
-# Evento de nodo "CheckButton" para hacer pantalla completa o en modo ventana
 func _on_check_button_toggled(button_pressed):
 	if button_pressed:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -112,30 +95,25 @@ func _on_check_button_toggled(button_pressed):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
-# Se ejecuta al presionar botón "iniciar"
+# Start button: loads level 1 the first time, then just closes the menu.
 func _on_button_pressed():
 	if _started:
-		# Si ya tenemos iniciado el juego, solo ocultamos el menú
 		_toggle_show()
 	else:
-		# Si no hemos iniciado, cargamos nivel 1 y cambiamos título de boton
 		SceneTransition.change_scene(PATH_LEVEL_1)
 		_started = true
 
 
-# Cuando cambia el slider de sonido de ambiente ajustamos el volumne de ambiente
 func _on_slider_ambient_value_changed(value):
 	var bus = AudioServer.get_bus_index("Ambient")
 	AudioServer.set_bus_volume_db(bus, linear_to_db(value))
 
 
-# Cuando cambia el slider de sonido de efectos ajustamos el volumne de los efectos
 func _on_slider_effects_value_changed(value):
 	var bus = AudioServer.get_bus_index("Effects")
 	AudioServer.set_bus_volume_db(bus, linear_to_db(value))
 
 
-# Función para poder mostrar/ocultar el menú
 func show_menu(_show: bool):
 	if _show:
 		if not visible:
@@ -145,11 +123,9 @@ func show_menu(_show: bool):
 			_toggle_show()
 
 
-# Mostramos/Ocultamos la pantalla de controles
 func _on_show_controls_pressed():
 	_game_controls.visible = not _game_controls.visible
 
 
-# Cerramos la pantalla de controles
 func _on_close_controls_pressed():
 	_game_controls.visible = false
