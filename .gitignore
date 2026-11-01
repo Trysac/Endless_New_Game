@@ -1,2 +1,13 @@
 # Godot 4+ specific ignores
 .godot/
+*.tmp
+
+# Export output
+/build/
+/exacutable/
+*.apk
+*.aab
+
+# OS files
+.DS_Store
+Thumbs.db
