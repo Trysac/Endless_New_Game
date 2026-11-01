@@ -286,4 +286,4 @@ func _play_sword_effect():
 	effect_animation_sword.play("attack_2_effect")
 
 func fall():
-	HealthDashboard.remove_life(fall_damage)
+	hit(fall_damage)
