@@ -13,6 +13,11 @@ extends Node2D
 
 var fall_damage = 2
 
+# Seconds after taking damage during which further damage is ignored
+const INVULNERABILITY_TIME = 1.0
+# Seconds per blink while invulnerable
+const BLINK_PERIOD = 0.2
+
 var gravity = 650
 var velocity = 100 # Horizontal speed
 var jump = 220 # Jump strength: the higher, the higher the jump
@@ -43,6 +48,8 @@ var attacking = false
 var bombing = false
 var _is_playing: String = "" # Name of the sound currently playing
 var turn_side: String = "right" # Side the character is facing
+var _invulnerable = false # True for a short while after taking damage
+var _blink_tween: Tween
 
 
 var _jump_sound = preload("res://assets/sounds/jump.mp3")
@@ -174,9 +181,13 @@ func is_dead() -> bool:
 	return _died
 
 
-# Takes damage.
-func hit(value: int):
+# Takes damage. Every damage source goes through here.
+# Damage taken while invulnerable is ignored unless `ignore_invulnerability`
+# is set (used by instant-death zones).
+func hit(value: int, ignore_invulnerability := false):
 	if _died:
+		return
+	if _invulnerable and not ignore_invulnerability:
 		return
 	attacking = false
 	HealthDashboard.remove_life(value)
@@ -185,6 +196,31 @@ func hit(value: int):
 
 	if HealthDashboard.life == 0:
 		_died = true
+		_stop_blink()
+	else:
+		_start_invulnerability()
+
+
+# Ignores damage for INVULNERABILITY_TIME seconds while the sprite blinks.
+func _start_invulnerability():
+	_invulnerable = true
+	_stop_blink()
+	_blink_tween = create_tween()
+	_blink_tween.set_loops(int(round(INVULNERABILITY_TIME / BLINK_PERIOD)))
+	_blink_tween.tween_property(main_animation, "modulate:a", 0.3, BLINK_PERIOD / 2)
+	_blink_tween.tween_property(main_animation, "modulate:a", 1.0, BLINK_PERIOD / 2)
+	_blink_tween.finished.connect(_end_invulnerability)
+
+
+func _end_invulnerability():
+	_invulnerable = false
+	main_animation.modulate.a = 1.0
+
+
+func _stop_blink():
+	if _blink_tween and _blink_tween.is_valid():
+		_blink_tween.kill()
+	main_animation.modulate.a = 1.0
 
 func _on_animation_animation_finished():
 	if main_animation.get_animation() == 'dead_hit':
