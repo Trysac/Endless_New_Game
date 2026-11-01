@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_8"
+importer="dialogue_manager"
+importer_version=18
 type="Resource"
 uid="uid://bvluw0puy8mkg"
 path="res://.godot/imported/blue_potion_item.dialogue-4bd6e578e199bc326807610b9112ce8d.tres"

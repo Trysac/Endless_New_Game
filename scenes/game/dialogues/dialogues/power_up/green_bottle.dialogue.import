@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_8"
+importer="dialogue_manager"
+importer_version=18
 type="Resource"
 uid="uid://b8b4athfnjmaj"
 path="res://.godot/imported/green_bottle.dialogue-46320909633686bbbb7f973b13f2b8ef.tres"
