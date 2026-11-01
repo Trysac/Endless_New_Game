@@ -1,55 +1,33 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1affhr4ts3ew"]
+[gd_scene load_steps=8 format=3 uid="uid://b1affhr4ts3ew"]
 
 [ext_resource type="Script" path="res://scenes/game/ui/splash/splash.gd" id="1_roa58"]
-[ext_resource type="Texture2D" uid="uid://k1yb8hn46r0n" path="res://assets/sprites/logo.png" id="2_p17l1"]
-[ext_resource type="Texture2D" uid="uid://b24wey0khy116" path="res://assets/sprites/logo-Endless.png" id="3_g3n3v"]
 [ext_resource type="Texture2D" uid="uid://c5pdxxbplprpe" path="res://assets/sprites/pixelfrog.png" id="4_r4eep"]
+[ext_resource type="FontFile" path="res://assets/fonts/press_Sstart_2p/PressStart2P-Regular.ttf" id="5_font"]
 
-[sub_resource type="Animation" id="Animation_6pate"]
+[sub_resource type="Animation" id="Animation_studio"]
 resource_name = "do_splash"
-length = 4.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GP360:modulate")
+tracks/0/path = NodePath("Studio:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4hex5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_studio"]
 _data = {
-"do_splash": SubResource("Animation_6pate")
-}
-
-[sub_resource type="Animation" id="Animation_l6svs"]
-resource_name = "do_splash"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Endless:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sivst"]
-_data = {
-"do_splash": SubResource("Animation_l6svs")
+"do_splash": SubResource("Animation_studio")
 }
 
 [sub_resource type="Animation" id="Animation_0wyjv"]
 resource_name = "do_splash"
-length = 4.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,10 +35,10 @@ tracks/0/path = NodePath("PixelFrog:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bw8es"]
@@ -69,39 +47,54 @@ _data = {
 }
 
 [node name="Splash" type="Node2D"]
-position = Vector2(-13, -2)
 script = ExtResource("1_roa58")
 
-[node name="GP360" type="Sprite2D" parent="."]
+[node name="Studio" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
-texture = ExtResource("2_p17l1")
-offset = Vector2(576, 312)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
 
-[node name="Endless" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(591, 315)
-texture = ExtResource("3_g3n3v")
+[node name="Title" type="Label" parent="Studio"]
+layout_mode = 0
+offset_top = 270.0
+offset_right = 1152.0
+offset_bottom = 318.0
+theme_override_colors/font_color = Color(0.95, 0.72, 0.35, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 48
+text = "TRYSAC"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Studio"]
+layout_mode = 0
+offset_top = 340.0
+offset_right = 1152.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 16
+text = "presents"
+horizontal_alignment = 1
 
 [node name="PixelFrog" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(576, 315)
+position = Vector2(576, 300)
 texture = ExtResource("4_r4eep")
 
 [node name="Label" type="Label" parent="PixelFrog"]
-offset_left = -179.0
-offset_top = 34.0
-offset_right = 175.0
-offset_bottom = 60.0
-text = "Gracias a por su Asset Pack: Treasure Hunters"
+offset_left = -400.0
+offset_top = 50.0
+offset_right = 400.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 12
+text = "Art: Treasure Hunters & Pirate Bomb by Pixel Frog"
+horizontal_alignment = 1
 
-[node name="AnimationPlayerGP360" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerStudio" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4hex5")
-}
-
-[node name="AnimationPlayerEndless" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_sivst")
+"": SubResource("AnimationLibrary_studio")
 }
 
 [node name="AnimationPixelFrog" type="AnimationPlayer" parent="."]
@@ -109,6 +102,5 @@ libraries = {
 "": SubResource("AnimationLibrary_bw8es")
 }
 
-[connection signal="animation_finished" from="AnimationPlayerGP360" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayerEndless" to="." method="_on_animation_player_endless_animation_finished"]
-[connection signal="animation_finished" from="AnimationPixelFrog" to="." method="_on_animation_pixel_frog_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayerStudio" to="." method="_on_studio_animation_finished"]
+[connection signal="animation_finished" from="AnimationPixelFrog" to="." method="_on_pixel_frog_animation_finished"]

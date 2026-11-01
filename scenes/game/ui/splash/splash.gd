@@ -1,49 +1,35 @@
 extends Node2D
-## Clase que controla la escena principal (Splash) 
-## 
-## Cambia la escena actual por mapa global del juego, hace animación de logos, dueños del juego 
+## Splash screen: shows the studio card, then the art credit, then the title screen.
+##
+## Any key skips straight to the title screen.
 
 
-@onready var AnimationPlayerGP360: AnimationPlayer = $AnimationPlayerGP360
-@onready var AnimationPlayerEndless: AnimationPlayer = $AnimationPlayerEndless
-@onready var AnimationPixelFrog: AnimationPlayer = $AnimationPixelFrog
+@onready var _studio_animation: AnimationPlayer = $AnimationPlayerStudio
+@onready var _pixel_frog_animation: AnimationPlayer = $AnimationPixelFrog
 
-# Ruta a la escena a cargar cuando finalice el "splash"
+# Scene loaded when the splash sequence ends.
 var _path_map_scene = "res://scenes/game/levels/rooms/init/init.tscn"
 
 
 func _ready():
-	# Escondemos la escena del menu
+	# Hide the in-game HUD while the splash is shown.
 	HealthDashboard.visible = false
-	# Mostramos el logo de Endless
-	AnimationPlayerEndless.play("do_splash")
+	_studio_animation.play("do_splash")
 
 
-# Escuchamos el teclado
 func _input(event):
-	# Escuchamos si se preciona algun boton
-	if event is InputEventKey:
-		# Llamamos el la función de cambio de escena
+	if event is InputEventKey and event.pressed:
 		_go_title_screen()
 
 
-# Cuando termina la animación
-func _on_animation_player_animation_finished(_anim_name):
-	# Mostramos el logo de Pixel Frog
-	AnimationPixelFrog.play("do_splash")
-
-
-# Redirect a la escena de Mapa
 func _go_title_screen():
-	# Pasamos a la escena de Menú principal
+	set_process_input(false)
 	SceneTransition.change_scene(_path_map_scene)
 
 
-func _on_animation_player_endless_animation_finished(anim_name):
-	# Mostramos el logo de GP360
-	AnimationPlayerGP360.play("do_splash")
+func _on_studio_animation_finished(_anim_name):
+	_pixel_frog_animation.play("do_splash")
 
 
-func _on_animation_pixel_frog_animation_finished(anim_name):
-	# Llamamos el la funcion de cambio de escena
+func _on_pixel_frog_animation_finished(_anim_name):
 	_go_title_screen()
