@@ -169,6 +169,11 @@ func die():
 	_died = true
 
 
+# True once the character has died.
+func is_dead() -> bool:
+	return _died
+
+
 # Takes damage.
 func hit(value: int):
 	if _died:

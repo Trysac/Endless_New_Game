@@ -84,8 +84,8 @@ func _move_idle():
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):
 		_stop_detection = true
-		_attack()
 		_body = body
+		_attack()
 
 
 func _on_area_2d_body_exited(_exited_body):
@@ -102,16 +102,19 @@ func _turn():
 			scale.x = -scale.x
 
 
-func _attack():	
-	if _stop_attack:
+# Starts attacking the player in range, if there is one and they are alive.
+func _attack():
+	if _stop_attack or not _body or _is_player_dead():
 		return
-		
-	if not _body:
-		# Retry on the next frame until the player reference is set.
-		await get_tree().create_timer(0).timeout
-		_attack()
-		
 	_animation.play("attack")
+
+
+# True when the player in range is dead (no point in attacking them).
+func _is_player_dead() -> bool:
+	if not is_instance_valid(_body):
+		return true
+	var move_script = _body.get_node_or_null("MainCharacterMovement")
+	return move_script == null or move_script.is_dead()
 
 
 func _init_state():
@@ -128,18 +131,16 @@ func _on_enemy_animation_frame_changed():
 		return
 	# Damage lands on the first frame of the attack animation.
 	if _animation.frame == 0 and _animation.get_animation() == "attack":
-		_animation_effect.play("attack_effect")
-		
-		if HealthDashboard.life > 0:
-			_audio_player.stream = _male_hurt_sound
-			_audio_player.play()
-		else:
+		# Stop attacking once the player is dead or gone.
+		if _is_player_dead():
 			_animation.play("idle")
 			_animation_effect.play("idle")
-		
-		if _body:
-			var _move_script = _body.get_node("MainCharacterMovement")
-			_move_script.hit(2)
+			return
+
+		_animation_effect.play("attack_effect")
+		_audio_player.stream = _male_hurt_sound
+		_audio_player.play()
+		_body.get_node("MainCharacterMovement").hit(2)
 
 
 func _detection():
