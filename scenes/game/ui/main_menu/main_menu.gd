@@ -2,7 +2,8 @@ extends Node2D
 ## Main menu.
 ##
 ## Start/continue, fullscreen, volume sliders, language and the controls screen.
-## Escape toggles it once the game has started; while open it pauses the game.
+## The pause action (Escape / Start) toggles it once the game has started;
+## while open it pauses the game. Every option can be reached with a gamepad.
 
 
 # Level loaded by the start button
@@ -27,6 +28,8 @@ var _started = false # True once the first level has been loaded
 @onready var _main = $Main
 @onready var _game_controls = $Main/GameControls
 @onready var _language = $Main/CanvasLayer/Options/Controls/Language
+@onready var _show_controls = $Main/CanvasLayer/Options/Controls/ShowControls
+@onready var _controls_list = $Main/GameControls/Background/Texts/List
 
 
 func _ready():
@@ -47,8 +50,15 @@ func _ready():
 	_game_controls.visible = false
 
 func _unhandled_input(event):
-	if event.is_action_released("ui_cancel") and _started:
+	if not event.is_action_pressed("pause"):
+		return
+	if _game_controls.visible:
+		# Back out of the controls screen first.
+		_on_close_controls_pressed()
+		get_viewport().set_input_as_handled()
+	elif _started:
 		_toggle_show()
+		get_viewport().set_input_as_handled()
 
 
 # Ping-pong the cloud layers forever.
@@ -90,6 +100,9 @@ func _toggle_show():
 			camera.enabled = not visible
 	if _started:
 		_button.text = "MENU_CONTINUE"
+	if visible:
+		# Let keyboard and gamepad players navigate the menu right away.
+		_button.call_deferred("grab_focus")
 
 
 func _on_check_button_toggled(button_pressed):
@@ -129,10 +142,13 @@ func show_menu(_show: bool):
 
 func _on_show_controls_pressed():
 	_game_controls.visible = not _game_controls.visible
+	if _game_controls.visible:
+		_controls_list.focus_first()
 
 
 func _on_close_controls_pressed():
 	_game_controls.visible = false
+	_show_controls.grab_focus()
 
 
 # Fills the language selector and selects the current language.

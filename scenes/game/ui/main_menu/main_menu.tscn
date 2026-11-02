@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ln85llv8md7"]
+[gd_scene load_steps=56 format=3 uid="uid://ln85llv8md7"]
 
 [ext_resource type="Script" path="res://scenes/game/ui/main_menu/main_menu.gd" id="1_g1i31"]
 [ext_resource type="Texture2D" uid="uid://c8apilaqosli4" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/additional_sky.png" id="2_66173"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ffrt80ib4na" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/big_banner/17.png" id="32_sxqtv"]
 [ext_resource type="Texture2D" uid="uid://mqsgcbqwnnsq" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/big_banner/18.png" id="33_14dux"]
 [ext_resource type="Script" uid="uid://dmraf376jsoev" path="res://scenes/game/ui/pixel_text/pixel_text.gd" id="34_pxtxt"]
+[ext_resource type="Script" path="res://scenes/game/ui/controls_list/controls_list.gd" id="35_ctlst"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4u6xb"]
 animations = [{
@@ -644,172 +645,12 @@ theme_override_fonts/font = ExtResource("27_eb3si")
 theme_override_font_sizes/font_size = 50
 text = "CONTROLS_TITLE"
 
-[node name="Row1" type="Control" parent="Main/GameControls/Background/Texts"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row1"]
-layout_mode = 0
-offset_left = -400.0
-offset_right = -60.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 22
-text = "CONTROLS_MOVE"
-
-[node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row1"]
-layout_mode = 0
-offset_left = -50.0
-offset_right = 490.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 20
-text = "CONTROLS_MOVE_KEYS"
-
-[node name="Row2" type="Control" parent="Main/GameControls/Background/Texts"]
-anchors_preset = 0
-offset_top = 50.0
-offset_right = 40.0
-offset_bottom = 90.0
-
-[node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row2"]
-layout_mode = 0
-offset_left = -400.0
-offset_right = -60.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 22
-text = "CONTROLS_JUMP"
-
-[node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row2"]
-layout_mode = 0
-offset_left = -50.0
-offset_right = 490.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 20
-text = "CONTROLS_JUMP_KEYS"
-
-[node name="Row3" type="Control" parent="Main/GameControls/Background/Texts"]
-anchors_preset = 0
-offset_top = 100.0
-offset_right = 40.0
-offset_bottom = 140.0
-
-[node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row3"]
-layout_mode = 0
-offset_left = -400.0
-offset_right = -60.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 22
-text = "CONTROLS_ATTACK"
-
-[node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row3"]
-layout_mode = 0
-offset_left = -50.0
-offset_right = 490.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 20
-text = "CONTROLS_ATTACK_KEYS"
-
-[node name="Row4" type="Control" parent="Main/GameControls/Background/Texts"]
-anchors_preset = 0
-offset_top = 150.0
-offset_right = 40.0
-offset_bottom = 190.0
-
-[node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row4"]
-layout_mode = 0
-offset_left = -400.0
-offset_right = -60.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 22
-text = "CONTROLS_BOMB"
-
-[node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row4"]
-layout_mode = 0
-offset_left = -50.0
-offset_right = 490.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 20
-text = "CONTROLS_BOMB_KEYS"
-
-[node name="Row5" type="Control" parent="Main/GameControls/Background/Texts"]
-anchors_preset = 0
-offset_top = 200.0
-offset_right = 40.0
-offset_bottom = 240.0
-
-[node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row5"]
-layout_mode = 0
-offset_left = -400.0
-offset_right = -60.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 22
-text = "CONTROLS_INTERACT"
-
-[node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row5"]
-layout_mode = 0
-offset_left = -50.0
-offset_right = 490.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 20
-text = "CONTROLS_INTERACT_KEYS"
-
-[node name="Row6" type="Control" parent="Main/GameControls/Background/Texts"]
-anchors_preset = 0
-offset_top = 250.0
-offset_right = 40.0
-offset_bottom = 290.0
-
-[node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row6"]
-layout_mode = 0
-offset_left = -400.0
-offset_right = -60.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 22
-text = "CONTROLS_INVENTORY"
-
-[node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row6"]
-layout_mode = 0
-offset_left = -50.0
-offset_right = 490.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 20
-text = "CONTROLS_INVENTORY_KEYS"
-
-[node name="Row7" type="Control" parent="Main/GameControls/Background/Texts"]
-anchors_preset = 0
-offset_top = 300.0
-offset_right = 40.0
+[node name="List" type="VBoxContainer" parent="Main/GameControls/Background/Texts"]
+offset_left = -420.0
+offset_top = -30.0
+offset_right = 440.0
 offset_bottom = 340.0
-
-[node name="Title" type="Label" parent="Main/GameControls/Background/Texts/Row7"]
-layout_mode = 0
-offset_left = -400.0
-offset_right = -60.0
-offset_bottom = 25.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 22
-text = "CONTROLS_MENU"
-
-[node name="Description" type="Label" parent="Main/GameControls/Background/Texts/Row7"]
-layout_mode = 0
-offset_left = -50.0
-offset_right = 490.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("27_eb3si")
-theme_override_font_sizes/font_size = 20
-text = "CONTROLS_MENU_KEYS"
+script = ExtResource("35_ctlst")
 
 [node name="Close" type="Control" parent="Main/GameControls/Background"]
 layout_mode = 1

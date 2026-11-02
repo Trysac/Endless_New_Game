@@ -9,22 +9,22 @@ MENU_EFFECTS,Effects,Efectos
 MENU_CONTROLS,Controls,Controles
 MENU_LANGUAGE,Language,Idioma
 CONTROLS_TITLE,Controls,Controles
-CONTROLS_MOVE,Move:,Movimiento:
-CONTROLS_MOVE_KEYS,Arrow keys ← →,Flechas ← y →
-CONTROLS_JUMP,Jump:,Salto:
-CONTROLS_JUMP_KEYS,Space,Espacio
-CONTROLS_ATTACK,Attack:,Ataque:
-CONTROLS_ATTACK_KEYS,X key,Tecla X
-CONTROLS_BOMB,Throw bomb:,Lanzar bomba:
-CONTROLS_BOMB_KEYS,B key,Tecla B
-CONTROLS_INTERACT,Shop:,Mercado:
-CONTROLS_INTERACT_KEYS,M key,Tecla M
-CONTROLS_INVENTORY,Inventory:,Inventario:
-CONTROLS_INVENTORY_KEYS,Mouse wheel,Rueda del ratón
-CONTROLS_MENU,Menu:,Menú:
-CONTROLS_MENU_KEYS,Esc,Escape
+CONTROLS_MOVE_LEFT,Move left,Izquierda
+CONTROLS_MOVE_RIGHT,Move right,Derecha
+CONTROLS_INTERACT,Talk / shop,Hablar / tienda
+CONTROLS_KEYBOARD,Keyboard,Teclado
+CONTROLS_GAMEPAD,Gamepad,Mando
+CONTROLS_PRESS,Press...,Pulsa...
+CONTROLS_RESET,Reset defaults,Restablecer
+CONTROLS_JUMP,Jump,Saltar
+CONTROLS_ATTACK,Attack,Atacar
+CONTROLS_BOMB,Throw bomb,Lanzar bomba
+CONTROLS_INVENTORY,Inventory,Inventario
+CONTROLS_MENU,Menu,Menú
 INVENTORY_TITLE,Inventory,Inventario
-INVENTORY_USE_ITEM,Use this item?,¿Usar item?
+INVENTORY_USE_ITEM,Use this item?,¿Usar este objeto?
+INVENTORY_HINT_USE,use,usar
+INVENTORY_HINT_CLOSE,close,cerrar
 SPLASH_PRESENTS,presents,presenta
 SPLASH_ART_CREDIT,Art: Treasure Hunters & Pirate Bomb by Pixel Frog,Arte: Treasure Hunters y Pirate Bomb de Pixel Frog
 SCENE_3_TO_BE_CONTINUED,To be continued...,Continuará...
