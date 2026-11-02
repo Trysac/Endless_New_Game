@@ -71,10 +71,20 @@ func _process(_delta):
 func load_progress():
 	_config = ConfigFile.new()
 	_config.load(path)
-	best_score = max(0, int(_config.get_value(SECTION, KEY_BEST_SCORE, 0)))
-	furthest_level = clamp(int(_config.get_value(SECTION, KEY_FURTHEST_LEVEL, 0)), 0, LEVELS.size())
+	best_score = max(0, _read_int(KEY_BEST_SCORE))
+	furthest_level = clamp(_read_int(KEY_FURTHEST_LEVEL), 0, LEVELS.size())
 	_best_before_run = best_score
 	best_score_changed.emit(best_score)
+
+
+# A saved number, or 0 when the value is missing or not a number.
+func _read_int(key: String) -> int:
+	var value = _config.get_value(SECTION, key, 0)
+	if typeof(value) in [TYPE_INT, TYPE_FLOAT]:
+		return int(value)
+	if typeof(value) == TYPE_STRING and value.is_valid_int():
+		return value.to_int()
+	return 0
 
 
 func save_progress():
