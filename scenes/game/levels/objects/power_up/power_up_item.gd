@@ -1,8 +1,9 @@
 extends Node2D
 ## Power-up item in the inventory.
 ##
-## Clicking it asks for confirmation; accepting activates the power-up,
-## shows its dialogue and removes one item from the inventory.
+## Clicking it (or accepting it from the inventory cursor) asks for
+## confirmation; accepting activates the power-up, shows its dialogue and
+## removes one item from the inventory.
 
 
 var _is_active = false # True while the mouse is over the item
@@ -16,17 +17,29 @@ var _dialogues = {
 @onready var canvas = $Num # Count label
 @onready var animation = $PowerUpItem
 @onready var _confirm = $CanvasConfirm
+@onready var _accept = $CanvasConfirm/Background/Container/Accept
+@onready var _cancel = $CanvasConfirm/Background/Container/Cancel
 
 
 func _ready():
 	canvas.text = num
+	# Texture buttons draw no focus frame: brighten the focused one instead.
+	for button in [_accept, _cancel]:
+		button.focus_entered.connect(func(): button.modulate = Color(1.35, 1.25, 1.0))
+		button.focus_exited.connect(func(): button.modulate = Color.WHITE)
 
 
 func _unhandled_input(event):
 	if not _is_active:
 		return
 	if event is InputEventMouseButton and event.is_action_released("click"):
-		_confirm.show()
+		request_use()
+
+
+## Asks the player to confirm using this item.
+func request_use():
+	_confirm.show()
+	_accept.grab_focus()
 
 
 func _show_dialogue():
@@ -57,6 +70,7 @@ func _on_area_mouse_exited():
 
 func _on_cancel_pressed():
 	_confirm.hide()
+	_cancel.release_focus()
 
 
 # Activates the power-up for the next four hits.
