@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dfvk3qkvi7h6d"]
+[gd_scene load_steps=26 format=3 uid="uid://dfvk3qkvi7h6d"]
 
 [ext_resource type="Texture2D" uid="uid://b2j6x57xp2en0" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/3-explotion/1.png" id="2_i7xrw"]
 [ext_resource type="Texture2D" uid="uid://dgnyjiunxp5nc" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/3-explotion/2.png" id="3_13aat"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dxc6k8yim76y1" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/2-bomb on/8.png" id="19_g3jas"]
 [ext_resource type="Texture2D" uid="uid://iww6blu2s8ov" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/2-bomb on/9.png" id="20_my6ul"]
 [ext_resource type="Texture2D" uid="uid://bp7fqxoyn66pj" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/2-bomb on/10.png" id="21_6l6mk"]
+[ext_resource type="Texture2D" uid="uid://cm142hc3tlhe6" path="res://assets/sprites/pirate_bomb/7_objects/1_bomb/1-bomb off/1.png" id="22_off"]
 [ext_resource type="Script" uid="uid://or1f62hx7cko" path="res://scenes/game/levels/objects/damage_object/bomb/bomb.gd" id="1_script"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8pduw"]
@@ -68,6 +69,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_off")
+}],
+"loop": false,
+"name": &"off",
 "speed": 5.0
 }, {
 "frames": [{
