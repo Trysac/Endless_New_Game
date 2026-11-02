@@ -75,6 +75,25 @@ def footsteps():
     return t
 
 
+def victory():
+    """Short fanfare for the win screen."""
+    t = Track(2.6)
+    lead = lambda p: square(p, 0.25)
+    notes = [("D5", 0.0, 0.12), ("D5", 0.14, 0.12), ("D5", 0.28, 0.12), ("D5", 0.42, 0.3),
+             ("Bb4", 0.78, 0.3), ("C5", 1.1, 0.3), ("D5", 1.42, 0.14), ("C5", 1.58, 0.1),
+             ("D5", 1.7, 0.7)]
+    for name, at, length in notes:
+        t.add_tone(at, length, note_freq(name), lead, 0.3, decay=0.06, sustain=0.65,
+                   release=0.08, vibrato=0.006 if length > 0.5 else 0.0)
+    for name, at, length in [("D3", 0.0, 0.6), ("Bb2", 0.78, 0.3), ("C3", 1.1, 0.3),
+                             ("D3", 1.42, 0.9)]:
+        t.add_tone(at, length, note_freq(name), triangle, 0.45, release=0.1)
+    for name in ["F#5", "A5", "D6"]:
+        t.add_tone(1.7, 0.7, note_freq(name), lambda p: square(p, 0.125), 0.08, release=0.3)
+    t.add_noise(1.7, 0.4, 0.15, smoothing=0.1, decay_power=2.0, seed=20)
+    return t
+
+
 EFFECTS = {
     "jump.mp3": jump,
     "male_hurt.mp3": hurt,
@@ -85,4 +104,5 @@ EFFECTS = {
     "punch.mp3": punch,
     "slash.mp3": slash,
     "running.mp3": footsteps,
+    "victory.ogg": victory,
 }

@@ -6,6 +6,7 @@ CHORDS = {
     "D": ("D", [0, 4, 7]), "Dm": ("D", [0, 3, 7]), "G": ("G", [0, 4, 7]),
     "A": ("A", [0, 4, 7]), "Am": ("A", [0, 3, 7]), "C": ("C", [0, 4, 7]),
     "F": ("F", [0, 4, 7]), "Bb": ("Bb", [0, 4, 7]), "Em": ("E", [0, 3, 7]),
+    "Gm": ("G", [0, 3, 7]),
 }
 
 
@@ -113,6 +114,19 @@ BAY_B = [
     ("G5:2 E5:1 D5:1 B4:2 D5:2", "G", 0), ("A4:6 R:2", "Am", 0),
 ]
 
+BOSS_A = [
+    ("D5:1 D5:1 F5:1 D5:1 A5:2 G5:1 F5:1", "Dm", 0), ("E5:1 F5:1 G5:1 E5:1 C5:2 E5:2", "C", 0),
+    ("D5:1 D5:1 F5:1 D5:1 Bb5:2 A5:1 G5:1", "Bb", 0), ("A5:2 G5:1 F5:1 E5:2 C#5:2", "A", 0),
+    ("D5:1 D5:1 F5:1 D5:1 A5:2 G5:1 F5:1", "Dm", 0), ("G5:1 A5:1 Bb5:1 G5:1 D5:2 G5:2", "Gm", 0),
+    ("F5:1 G5:1 A5:1 F5:1 Bb5:2 A5:2", "Bb", 0), ("A5:3 G5:1 E5:2 C#5:2", "A", 0),
+]
+BOSS_B = [
+    ("A5:2 A5:1 Bb5:1 A5:2 F5:2", "Dm", 0), ("G5:2 G5:1 A5:1 G5:2 E5:2", "C", 0),
+    ("F5:2 F5:1 G5:1 F5:2 D5:2", "Bb", 0), ("E5:2 F5:1 E5:1 C#5:4", "A", 0),
+    ("D6:2 C6:1 Bb5:1 A5:2 F5:2", "Dm", 0), ("G5:2 A5:1 Bb5:1 D6:4", "Gm", 0),
+    ("C6:2 Bb5:1 A5:1 G5:2 E5:2", "A", 0), ("D5:6 R:2", "Dm", 0),
+]
+
 SONGS = {
     # Jig in 6/8 for the island (menu and first room).
     "pirate_game_tune.ogg": {
@@ -131,5 +145,11 @@ SONGS = {
         "eighth": 0.15, "meter": 8, "form": "ABAB",
         "sections": {"A": BAY_A, "B": BAY_B},
         "bass": "R.RFR.OF", "drums": "KhShKhSh",
+    },
+    # Driving minor theme for the Captain fight (loops seamlessly).
+    "boss_battle.ogg": {
+        "eighth": 0.125, "meter": 8, "form": "AABB",
+        "sections": {"A": BOSS_A, "B": BOSS_B},
+        "bass": "RORORFOF", "drums": "KhSKKhSh",
     },
 }
