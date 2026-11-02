@@ -2,7 +2,8 @@ extends Area2D
 ## Collectible coin or diamond.
 ##
 ## Loads the idle frames for the configured item, plays the pick-up animation
-## when the player touches it, adds one point and frees itself.
+## when the player touches it, adds one point of its type plus its run score
+## and frees itself.
 
 
 ## Item type; also selects the sprite folder.
@@ -20,6 +21,16 @@ extends Area2D
 
 var _pickup_sound = preload("res://assets/sounds/pickup.mp3")
 var _taken = false # True once collected; the collider is only disabled next frame
+
+# HUD counter of each item
+const POINT_TYPES = {
+	"blue_diamond": "BlueDiamond",
+	"green_diamond": "GreenDiamond",
+	"red_diamond": "RedDiamond",
+	"gold_coin": "GoldCoin",
+	"silver_coin": "SilverCoin",
+}
+const BONUS_COLOR = Color(1, 0.4, 0.45)
 
 # Sparkle colour of each item
 const SPARKLE_COLORS = {
@@ -62,18 +73,15 @@ func do_animation():
 	else:
 		_animated_sprite.play("diamond_taken")
 
-	# Every item is worth one point of its type.
-	var type = "GoldCoin"
-	if animation == "silver_coin":
-		type = "SilverCoin"
-	elif animation == "blue_diamond":
-		type = "BlueDiamond"
-	elif animation == "green_diamond":
-		type = "GreenDiamond"
-	elif animation == "red_diamond":
-		type = "RedDiamond"
-	HealthDashboard.add_points(type, 1)
-	GameFeel.burst(global_position, SPARKLE_COLORS.get(animation, Color.WHITE), 8, 60.0)
+	var type = POINT_TYPES.get(animation, "GoldCoin")
+	var color = SPARKLE_COLORS.get(animation, Color.WHITE)
+	var completed_set = HealthDashboard.collect(type)
+	GameFeel.burst(global_position, color, 8, 60.0)
+	GameFeel.popup_text(global_position + Vector2(0, -8), "+%d" % HealthDashboard.PICKUP_SCORES[type], color)
+	if completed_set:
+		# Third diamond colour: full health, once per run.
+		GameFeel.popup_text(global_position + Vector2(0, -24), tr("DIAMOND_SET_BONUS"), BONUS_COLOR)
+		GameFeel.burst(global_position, BONUS_COLOR, 16, 90.0)
 
 
 func _on_body_entered(body):

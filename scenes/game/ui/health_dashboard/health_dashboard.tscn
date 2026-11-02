@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bbdmu0jrh4l4o"]
+[gd_scene load_steps=35 format=3 uid="uid://bbdmu0jrh4l4o"]
 
 [ext_resource type="Script" path="res://scenes/game/ui/health_dashboard/health_dashboard.gd" id="1_rufnl"]
 [ext_resource type="Texture2D" uid="uid://cl5b1weh62et3" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/life_bars/big_bars/1.png" id="2_q6wv6"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d3bljsqlyvvf1" path="res://assets/sprites/treasure_hunters/pirate_treasure/sprites/blue_diamond/01.png" id="9_culmi"]
 [ext_resource type="Texture2D" uid="uid://dag1d05f4evdq" path="res://assets/sprites/treasure_hunters/pirate_treasure/sprites/green_diamond/01.png" id="10_fhwqc"]
 [ext_resource type="Texture2D" uid="uid://xiw4qwa52ual" path="res://assets/sprites/treasure_hunters/pirate_treasure/sprites/red_diamond/01.png" id="11_7u8si"]
+[ext_resource type="Script" uid="uid://dmraf376jsoev" path="res://scenes/game/ui/pixel_text/pixel_text.gd" id="12_pxtxt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jphx6"]
 atlas = ExtResource("7_kitrq")
@@ -464,3 +465,33 @@ offset_right = 234.0
 offset_bottom = 49.0
 scale = Vector2(0.9, 0.9)
 texture = SubResource("AtlasTexture_anbyg")
+
+[node name="Score" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_top = 14.0
+offset_right = 90.0
+offset_bottom = 54.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Control" parent="Score"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+script = ExtResource("12_pxtxt")
+text = "HUD_SCORE"
+letter_size = Vector2(12, 13)
+letter_advance = 13.0
+
+[node name="Value" type="Control" parent="Score"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+script = ExtResource("12_pxtxt")
+text = "00000"
+letter_size = Vector2(18, 20)
+letter_advance = 20.0
