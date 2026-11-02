@@ -21,6 +21,15 @@ extends Area2D
 var _pickup_sound = preload("res://assets/sounds/pickup.mp3")
 var _taken = false # True once collected; the collider is only disabled next frame
 
+# Sparkle colour of each item
+const SPARKLE_COLORS = {
+	"blue_diamond": Color(0.5, 0.75, 1),
+	"green_diamond": Color(0.55, 0.95, 0.5),
+	"red_diamond": Color(1, 0.45, 0.45),
+	"gold_coin": Color(1, 0.85, 0.35),
+	"silver_coin": Color(0.9, 0.9, 0.95),
+}
+
 
 func _ready():
 	if not animation:
@@ -64,6 +73,7 @@ func do_animation():
 	elif animation == "red_diamond":
 		type = "RedDiamond"
 	HealthDashboard.add_points(type, 1)
+	GameFeel.burst(global_position, SPARKLE_COLORS.get(animation, Color.WHITE), 8, 60.0)
 
 
 func _on_body_entered(body):

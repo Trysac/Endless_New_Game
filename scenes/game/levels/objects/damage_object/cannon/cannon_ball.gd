@@ -20,6 +20,8 @@ func _on_body_entered(body):
 	self.collision_mask = 0
 	self.collision_layer = 0
 	_ball_animation.play("explosion")
+	GameFeel.shake(3.0, 0.2)
+	GameFeel.burst(global_position, Color(1, 0.7, 0.35), 12, 110.0)
 	if body.is_in_group("player"):
 		var _move_script = body.get_node("MainCharacterMovement")
-		_move_script.hit(10)
+		_move_script.hit(10, false, global_position)
