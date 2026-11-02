@@ -37,3 +37,6 @@ HUD_SCORE,Score,Puntos
 CHECKPOINT_REACHED,Checkpoint!,¡Punto de control!
 DIAMOND_SET_BONUS,All diamonds! Full health,¡Todos los diamantes! Vida llena
 MENU_BEST_SCORE,Best: %d,Récord: %d
+BOSS_CAPTAIN,Captain,Capitán
+BOSS_TAUNT,Nobody takes my treasure!,¡Nadie se lleva mi tesoro!
+BOSS_ENRAGED,The Captain is furious!,¡El Capitán está furioso!

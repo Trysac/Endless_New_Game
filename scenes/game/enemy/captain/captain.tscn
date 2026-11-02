@@ -1,0 +1,121 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/game/enemy/captain/captain.gd" id="1_captain"]
+[ext_resource type="FontFile" uid="uid://dregmkvncw55k" path="res://assets/fonts/press_Sstart_2p/PressStart2P-Regular.ttf" id="2_font"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(28, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(34, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_contact"]
+size = Vector2(36, 46)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.17, 0.11, 0.08, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.94, 0.8, 0.5, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.85, 0.22, 0.2, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.17, 0.11, 0.08, 0)
+border_blend = true
+
+[node name="Captain" type="CharacterBody2D"]
+collision_layer = 0
+floor_snap_length = 6.0
+script = ExtResource("1_captain")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Flip" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Flip"]
+scale = Vector2(0.9, 0.9)
+offset = Vector2(5.5, -35.5)
+
+[node name="Exclamation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -74)
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_hurt")
+
+[node name="ContactArea" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactArea"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_contact")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Effects"
+
+[node name="HealthBar" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Root" type="Control" parent="HealthBar"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Box" type="VBoxContainer" parent="HealthBar/Root"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -210.0
+offset_top = -74.0
+offset_right = 210.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="HealthBar/Root/Box"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "BOSS_CAPTAIN"
+horizontal_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="HealthBar/Root/Box"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+max_value = 18.0
+step = 0.01
+value = 18.0
+show_percentage = false
