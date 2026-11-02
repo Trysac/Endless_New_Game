@@ -26,8 +26,13 @@ extends CharacterBody2D
 @onready var _raycast_vision_right := $Area2D/RayCastVisionRight
 @onready var _audio_player= $AudioStreamPlayer2D
 
+# Push received from the sword, and how fast it fades (px/s, px/s²)
+const KNOCKBACK_SPEED = 120.0
+const KNOCKBACK_DECAY = 600.0
+const SPARK_COLOR = Color(1, 0.9, 0.55)
+const DEATH_COLOR = Color(0.95, 0.45, 0.3)
+
 var _punch_sound = preload("res://assets/sounds/punch.mp3")
-var _male_hurt_sound = preload("res://assets/sounds/male_hurt.mp3")
 
 var _gravity = 10
 var _speed = 25
@@ -42,6 +47,7 @@ var _stop_attack = false
 var _hits_to_die = 3
 var _hits_taken = 0
 var is_dead = false
+var _knockback = 0.0 # Current knockback speed; overrides walking while not zero
 
 
 func _ready():
@@ -54,6 +60,12 @@ func _ready():
 
 
 func _physics_process(delta):
+	if _knockback != 0.0:
+		velocity.x = _knockback
+		velocity.y += _gravity
+		_knockback = move_toward(_knockback, 0.0, KNOCKBACK_DECAY * delta)
+		move_and_slide()
+		return
 	if (is_dead): return
 	if animation == "run":
 		_move_character(delta)
@@ -137,10 +149,9 @@ func _on_enemy_animation_frame_changed():
 			_animation_effect.play("idle")
 			return
 
-		_animation_effect.play("attack_effect")
-		_audio_player.stream = _male_hurt_sound
-		_audio_player.play()
-		_body.get_node("MainCharacterMovement").hit(2)
+		# Only show the hit when it lands (not while the player blinks).
+		if _body.get_node("MainCharacterMovement").hit(2, false, global_position):
+			_animation_effect.play("attack_effect")
 
 
 func _detection():
@@ -185,17 +196,23 @@ func _move(_direction):
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("hit"):
-		_damage()
+		_damage(area.global_position)
 	elif area.is_in_group("die"):
 		is_dead = true
-		_damage()
+		_damage(area.global_position)
 
-func _damage():	
+func _damage(source: Vector2):
 	_hits_taken += 1
 	_audio_player.stream = _punch_sound
 	_audio_player.play()
 	_animation.play("hit")
 	_animation_effect.play("idle")
+	_flash()
+	var side = sign(global_position.x - source.x)
+	_knockback = (side if side != 0 else 1.0) * KNOCKBACK_SPEED
+	GameFeel.burst(global_position, SPARK_COLOR, 8, 100.0)
+	GameFeel.hitstop(0.05)
+	GameFeel.shake(2.0, 0.12)
 	
 	# A power-up attack kills in one hit and uses one charge.
 	if Global.special_attacks_left > 0:
@@ -213,6 +230,14 @@ func _damage():
 		# Freed when the death animation ends
 		if _animation.animation != "dead_ground":
 			_animation.play("dead_ground")
+			GameFeel.burst(global_position, DEATH_COLOR, 18, 130.0)
+			GameFeel.shake(3.0, 0.2)
+
+
+# Flashes the sprite white for a moment.
+func _flash():
+	_animation.modulate = Color(3, 3, 3)
+	create_tween().tween_property(_animation, "modulate", Color.WHITE, 0.15)
 
 
 func _on_enemy_animation_animation_finished():
