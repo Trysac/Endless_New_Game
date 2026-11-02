@@ -431,7 +431,8 @@ func _die():
 
 func _victory_slow_motion():
 	# Real-time steps; the hit-stop of the last blow finishes first.
-	var tween = create_tween().set_ignore_time_scale(true)
+	# It keeps running while paused so the menu never opens in slow motion.
+	var tween = create_tween().set_ignore_time_scale(true).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_interval(0.1)
 	tween.tween_callback(_start_slow_motion)
 	tween.tween_interval(SLOW_MOTION_TIME)
@@ -556,7 +557,8 @@ func _on_sprite_animation_finished():
 
 
 func _on_hurt_box_area_entered(area):
-	if not is_active():
+	# Hits during the phase change are ignored, so they must not use a charge.
+	if not is_active() or state == State.PHASE_CHANGE:
 		return
 	if area.is_in_group("hit"):
 		# A power-up sword hit uses one charge; it deals extra damage instead
