@@ -17,6 +17,13 @@ var fall_damage = 2
 const INVULNERABILITY_TIME = 1.0
 # Seconds per blink while invulnerable
 const BLINK_PERIOD = 0.2
+# Horizontal push away from the damage source, and how fast it fades (px/s, px/s²)
+const KNOCKBACK_SPEED = 160.0
+const KNOCKBACK_DECAY = 700.0
+# Upward pop when knocked back on the ground
+const KNOCKBACK_LIFT = 140.0
+const HURT_COLOR = Color(0.9, 0.25, 0.2)
+const DUST_COLOR = Color(0.85, 0.8, 0.7)
 
 var gravity = 650
 var velocity = 100 # Horizontal speed
@@ -50,6 +57,7 @@ var _is_playing: String = "" # Name of the sound currently playing
 var turn_side: String = "right" # Side the character is facing
 var _invulnerable = false # True for a short while after taking damage
 var _blink_tween: Tween
+var _knockback = 0.0 # Current knockback speed; overrides input while not zero
 
 
 var _jump_sound = preload("res://assets/sounds/jump.mp3")
@@ -90,6 +98,11 @@ func _move(delta):
 	else:
 		character.velocity.x = 0
 		_current_movement = _movements.IDLE
+
+	# A knockback overrides the input until it fades out.
+	if _knockback != 0.0:
+		character.velocity.x = _knockback
+		_knockback = move_toward(_knockback, 0.0, KNOCKBACK_DECAY * delta)
 
 	if Input.is_action_just_pressed("jump"):
 		if character.is_on_floor():
@@ -161,6 +174,8 @@ func _apply_gravity(delta):
 		v.y += gravity * delta
 		# Back on the floor after a jump: reset the jump state.
 		if character.is_on_floor():
+			if _is_jumping:
+				GameFeel.burst(character.global_position + Vector2(0, 14), DUST_COLOR, 6, 40.0, 70.0)
 			_is_jumping = false
 			current_position = character.position.y
 			_jump_count = 0
@@ -183,22 +198,44 @@ func is_dead() -> bool:
 
 # Takes damage. Every damage source goes through here.
 # Damage taken while invulnerable is ignored unless `ignore_invulnerability`
-# is set (used by instant-death zones).
-func hit(value: int, ignore_invulnerability := false):
+# is set (used by instant-death zones and falls). When `source` is given the
+# character is knocked back away from it.
+# Returns true when the damage was applied.
+func hit(value: int, ignore_invulnerability := false, source := Vector2.INF) -> bool:
 	if _died:
-		return
+		return false
 	if _invulnerable and not ignore_invulnerability:
-		return
+		return false
 	attacking = false
 	HealthDashboard.remove_life(value)
 	_play_sound(_male_hurt_sound)
 	main_animation.play("hit_with_sword")
+	GameFeel.burst(character.global_position, HURT_COLOR, 10, 90.0)
+	if source != Vector2.INF:
+		_knock_back(source)
 
 	if HealthDashboard.life == 0:
 		_died = true
+		_knockback = 0.0
+		_end_invulnerability()
 		_stop_blink()
+		GameFeel.shake(7.0, 0.5)
+		GameFeel.hitstop(0.15)
 	else:
+		GameFeel.shake(4.0, 0.25)
+		GameFeel.hitstop(0.07)
 		_start_invulnerability()
+	return true
+
+
+# Pushes the character away from `source` with a small hop.
+func _knock_back(source: Vector2):
+	var side = sign(character.global_position.x - source.x)
+	if side == 0:
+		side = -1 if turn_side == "right" else 1
+	_knockback = side * KNOCKBACK_SPEED
+	if character.is_on_floor():
+		character.velocity.y = -KNOCKBACK_LIFT
 
 
 # Ignores damage for INVULNERABILITY_TIME seconds while the sprite blinks.
@@ -285,5 +322,6 @@ func _play_sword_effect():
 
 	effect_animation_sword.play("attack_2_effect")
 
+# Landing from too high always hurts, even right after another hit.
 func fall():
-	hit(fall_damage)
+	hit(fall_damage, true)
