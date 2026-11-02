@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://hd3ei4djak8da"]
+[gd_scene load_steps=25 format=3 uid="uid://hd3ei4djak8da"]
 
 [ext_resource type="Texture2D" uid="uid://cg6wkkuni8aq8" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/bg_image.png" id="1_a12cs"]
 [ext_resource type="TileSet" uid="uid://bx1rsqucrwm2i" path="res://assets/resources/bg_tile_set.tres" id="1_atorb"]
@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://dcptpykdlp5rk" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_01.png" id="11_4ker5"]
 [ext_resource type="Texture2D" uid="uid://ntgt51twdxdm" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/water_reflect_medium_03.png" id="13_u3w7t"]
 [ext_resource type="PackedScene" uid="uid://deedu63sld0es" path="res://scenes/game/levels/objects/death/death.tscn" id="16_kwprd"]
+[ext_resource type="PackedScene" uid="uid://usew4qqawlji" path="res://scenes/game/enemy/bald_pirate.tscn" id="t9a_bald_pirate"]
+[ext_resource type="PackedScene" uid="uid://3x3yhe8t8g74" path="res://scenes/game/enemy/big_guy_brute.tscn" id="t9a_big_guy_brute"]
+[ext_resource type="PackedScene" uid="uid://4kx6sg01ez7q" path="res://scenes/game/enemy/cucumber.tscn" id="t9a_cucumber"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7drek"]
 load_path = "res://.godot/imported/small_cloud_1.png-40532304be8a8e58b358963bfcb15f67.ctex"
@@ -286,3 +289,18 @@ texture = SubResource("CompressedTexture2D_d1lya")
 z_index = -1
 position = Vector2(526, 297)
 animation = &"idle_left"
+
+[node name="Cucumber" parent="Enemies" instance=ExtResource("t9a_cucumber")]
+position = Vector2(190, 570)
+animation = "run"
+moving_direction = "right"
+
+[node name="BaldPirate" parent="Enemies" instance=ExtResource("t9a_bald_pirate")]
+position = Vector2(940, 286)
+animation = "idle"
+moving_direction = "left"
+
+[node name="BigGuyBrute" parent="Enemies" instance=ExtResource("t9a_big_guy_brute")]
+position = Vector2(850, 566)
+animation = "run"
+moving_direction = "left"
