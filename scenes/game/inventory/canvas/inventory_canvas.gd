@@ -129,6 +129,12 @@ func _binding_names(action: StringName) -> String:
 	return " / ".join(names)
 
 
+# True when an item of this type can be added: it stacks on an existing
+# slot or a slot is still free.
+func can_add_item(_name: String) -> bool:
+	return _item_object_names.has(_name) or _item_object_names.size() < _item_contents.size()
+
+
 # Adds one item by animation name (e.g. blue_potion or green_bottle).
 # An item already in the inventory just increases its count.
 # Returns false when the item could not be added (every slot is taken).

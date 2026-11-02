@@ -25,6 +25,7 @@ INVENTORY_TITLE,Inventory,Inventario
 INVENTORY_USE_ITEM,Use this item?,¿Usar este objeto?
 INVENTORY_HINT_USE,use,usar
 INVENTORY_HINT_CLOSE,close,cerrar
+INVENTORY_FULL,Inventory full!,¡Inventario lleno!
 SPLASH_PRESENTS,presents,presenta
 SPLASH_ART_CREDIT,Art: Treasure Hunters & Pirate Bomb by Pixel Frog,Arte: Treasure Hunters y Pirate Bomb de Pixel Frog
 SCENE_3_TO_BE_CONTINUED,To be continued...,Continuará...

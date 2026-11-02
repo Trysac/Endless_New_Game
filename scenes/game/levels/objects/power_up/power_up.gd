@@ -2,6 +2,7 @@ extends AnimatedSprite2D
 ## Power-up pickup.
 ##
 ## Shows a description dialogue when the player touches it, then goes to the inventory.
+## With a full inventory it stays on the ground and says so instead.
 
 
 # Description dialogue for each power-up animation
@@ -25,6 +26,9 @@ func _show_dialogue():
 
 func _on_area_body_entered(body):
 	if body.is_in_group("player") and not _move:
+		if not InventoryCanvas.can_add_item(animation):
+			GameFeel.popup_text(global_position + Vector2(0, -12), tr("INVENTORY_FULL"), Color(1, 0.6, 0.5))
+			return
 		# Freeze the player while the dialogue is shown.
 		_move = body.get_node_or_null("MainCharacterMovement")
 		_show_dialogue()
