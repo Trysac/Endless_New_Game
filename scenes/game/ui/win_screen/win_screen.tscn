@@ -1,0 +1,260 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/game/ui/win_screen/win_screen.gd" id="script"]
+[ext_resource type="FontFile" uid="uid://dregmkvncw55k" path="res://assets/fonts/press_Sstart_2p/PressStart2P-Regular.ttf" id="font"]
+[ext_resource type="Texture2D" uid="uid://cg6wkkuni8aq8" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/bg_image.png" id="bg"]
+[ext_resource type="Texture2D" uid="uid://bsp1wxe0pqhn6" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/prefabs/3.png" id="board"]
+[ext_resource type="Texture2D" uid="uid://c8gbrqkb3q2ei" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/yellow_button/2.png" id="btn_left"]
+[ext_resource type="Texture2D" uid="uid://boj2dfl141v17" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/yellow_button/3.png" id="btn_center"]
+[ext_resource type="Texture2D" uid="uid://b4y4paxn2nw2y" path="res://assets/sprites/treasure_hunters/wood_and_paper_ui/sprites/yellow_button/4.png" id="btn_right"]
+[ext_resource type="Texture2D" uid="uid://bmn2hx61jlm7n" path="res://assets/sprites/treasure_hunters/pirate_treasure/sprites/gold_coin/01.png" id="coin"]
+[ext_resource type="Texture2D" uid="uid://d3bljsqlyvvf1" path="res://assets/sprites/treasure_hunters/pirate_treasure/sprites/blue_diamond/01.png" id="diamond"]
+[ext_resource type="AudioStream" path="res://assets/sounds/victory.ogg" id="jingle"]
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("script")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(1, 0.84, 0.74, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("bg")
+expand_mode = 1
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1, 0.05, 0.03, 0.35)
+
+[node name="Panel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("board")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = 36.0
+offset_right = -44.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Title" type="Label" parent="Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 32
+text = "WIN_TITLE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.8, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 10
+text = "WIN_SUBTITLE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="Panel/Content"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="Score" type="HBoxContainer" parent="Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Panel/Content/Score"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Value" type="Label" parent="Panel/Content/Score"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 18
+text = ""
+horizontal_alignment = 1
+auto_translate_mode = 2
+vertical_alignment = 1
+
+[node name="Best" type="Label" parent="Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+auto_translate_mode = 2
+
+[node name="Diamonds" type="HBoxContainer" parent="Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Panel/Content/Diamonds"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("diamond")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Value" type="Label" parent="Panel/Content/Diamonds"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+auto_translate_mode = 2
+vertical_alignment = 1
+
+[node name="NewRecord" type="Label" parent="Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.62, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 18
+text = "WIN_NEW_RECORD"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="Panel/Content"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PlayAgain" type="Control" parent="Panel/Content/Buttons"]
+custom_minimum_size = Vector2(260, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Left" type="TextureRect" parent="Panel/Content/Buttons/PlayAgain"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 45.0
+texture = ExtResource("btn_left")
+
+[node name="Center" type="TextureRect" parent="Panel/Content/Buttons/PlayAgain"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 224.0
+offset_bottom = 45.0
+texture = ExtResource("btn_center")
+
+[node name="Right" type="TextureRect" parent="Panel/Content/Buttons/PlayAgain"]
+layout_mode = 0
+offset_left = 220.0
+offset_right = 260.0
+offset_bottom = 45.0
+texture = ExtResource("btn_right")
+
+[node name="Button" type="Button" parent="Panel/Content/Buttons/PlayAgain"]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.32, 0.18, 0.08, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.1, 0.04, 1)
+theme_override_colors/font_focus_color = Color(0.2, 0.1, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.06, 0.02, 1)
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 13
+text = "WIN_PLAY_AGAIN"
+flat = true
+
+[node name="MainMenu" type="Control" parent="Panel/Content/Buttons"]
+custom_minimum_size = Vector2(260, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Left" type="TextureRect" parent="Panel/Content/Buttons/MainMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 45.0
+texture = ExtResource("btn_left")
+
+[node name="Center" type="TextureRect" parent="Panel/Content/Buttons/MainMenu"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 224.0
+offset_bottom = 45.0
+texture = ExtResource("btn_center")
+
+[node name="Right" type="TextureRect" parent="Panel/Content/Buttons/MainMenu"]
+layout_mode = 0
+offset_left = 220.0
+offset_right = 260.0
+offset_bottom = 45.0
+texture = ExtResource("btn_right")
+
+[node name="Button" type="Button" parent="Panel/Content/Buttons/MainMenu"]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.32, 0.18, 0.08, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.1, 0.04, 1)
+theme_override_colors/font_focus_color = Color(0.2, 0.1, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.12, 0.06, 0.02, 1)
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 13
+text = "WIN_MAIN_MENU"
+flat = true
+
+[node name="Jingle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("jingle")
+autoplay = true
+bus = &"Ambient"

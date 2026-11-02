@@ -40,3 +40,10 @@ MENU_BEST_SCORE,Best: %d,Récord: %d
 BOSS_CAPTAIN,Captain,Capitán
 BOSS_TAUNT,Nobody takes my treasure!,¡Nadie se lleva mi tesoro!
 BOSS_ENRAGED,The Captain is furious!,¡El Capitán está furioso!
+WIN_TITLE,Victory!,¡Victoria!
+WIN_SUBTITLE,The Captain is defeated and his treasure is yours.,El Capitán ha sido derrotado y su tesoro es tuyo.
+WIN_SCORE,Score: %d,Puntos: %d
+WIN_DIAMONDS,Diamonds: %d,Diamantes: %d
+WIN_NEW_RECORD,New record!,¡Nuevo récord!
+WIN_PLAY_AGAIN,Play again,Jugar de nuevo
+WIN_MAIN_MENU,Main menu,Menú principal
