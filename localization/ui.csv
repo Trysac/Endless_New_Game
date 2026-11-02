@@ -28,7 +28,6 @@ INVENTORY_HINT_CLOSE,close,cerrar
 INVENTORY_FULL,Inventory full!,¡Inventario lleno!
 SPLASH_PRESENTS,presents,presenta
 SPLASH_ART_CREDIT,Art: Treasure Hunters & Pirate Bomb by Pixel Frog,Arte: Treasure Hunters y Pirate Bomb de Pixel Frog
-SCENE_3_TO_BE_CONTINUED,To be continued...,Continuará...
 CHARACTER_GRAN,Grand Pirate,Gran Pirata
 CHARACTER_PIRATA,Pirate Brokebeard,Pirata Malaplata
 CHARACTER_SELENA,Selena the Whale,Selena la Ballena
@@ -40,6 +39,7 @@ MENU_BEST_SCORE,Best: %d,Récord: %d
 BOSS_CAPTAIN,Captain,Capitán
 BOSS_TAUNT,Nobody takes my treasure!,¡Nadie se lleva mi tesoro!
 BOSS_ENRAGED,The Captain is furious!,¡El Capitán está furioso!
+BOSS_EXIT_OPEN,The way out is open!,¡La salida está abierta!
 WIN_TITLE,Victory!,¡Victoria!
 WIN_SUBTITLE,The Captain is defeated and his treasure is yours.,El Capitán ha sido derrotado y su tesoro es tuyo.
 WIN_SCORE,Score: %d,Puntos: %d
