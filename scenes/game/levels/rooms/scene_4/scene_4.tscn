@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcyh735u5nvm4"]
+[gd_scene load_steps=18 format=3 uid="uid://bcyh735u5nvm4"]
 
 [ext_resource type="Texture2D" uid="uid://cg6wkkuni8aq8" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/bg_image.png" id="1_bgimg"]
 [ext_resource type="Texture2D" uid="uid://baayrdcvulwo2" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/big_clouds.png" id="1_bigcl"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c2e1lhm1w4re4" path="res://scenes/game/levels/objects/damage_object/spikes/spikes.tscn" id="15_glnho"]
 [ext_resource type="PackedScene" uid="uid://usew4qqawlji" path="res://scenes/game/enemy/bald_pirate.tscn" id="t9a_bald_pirate"]
 [ext_resource type="PackedScene" uid="uid://4kx6sg01ez7q" path="res://scenes/game/enemy/cucumber.tscn" id="t9a_cucumber"]
+[ext_resource type="PackedScene" path="res://scenes/game/levels/objects/checkpoint/checkpoint.tscn" id="t9c_checkpoint"]
 
 [node name="scene_4" type="Node2D"]
 
@@ -417,3 +418,6 @@ moving_direction = "right"
 position = Vector2(1100, 195)
 animation = "idle"
 moving_direction = "left"
+
+[node name="Checkpoint" parent="." instance=ExtResource("t9c_checkpoint")]
+position = Vector2(528, 303)

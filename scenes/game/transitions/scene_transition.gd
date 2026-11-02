@@ -16,6 +16,8 @@ func change_scene(target: String, show_menu = false):
 	animation.play("dissolve")
 	await animation.animation_finished
 	MainMenu.show_menu(show_menu)
+	# A new level: forget the previous level's checkpoint.
+	Progress.enter_level(target)
 	get_tree().change_scene_to_file(target)
 	animation.play_backwards("dissolve")
 	await animation.animation_finished
@@ -23,8 +25,10 @@ func change_scene(target: String, show_menu = false):
 	visible = false
 
 
-# Resets health and points and reloads the current scene.
+# Reloads the current level after a death. The player comes back at the
+# level's respawn point (its start or last checkpoint) with full health and
+# the counters it had there; see Progress.
 func reload_scene():
 	HealthDashboard.visible = true
-	HealthDashboard.restart()
+	Progress.prepare_respawn()
 	get_tree().reload_current_scene()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhor7t5klwdwx"]
+[gd_scene load_steps=27 format=3 uid="uid://dhor7t5klwdwx"]
 
 [ext_resource type="TileSet" uid="uid://bx1rsqucrwm2i" path="res://assets/resources/bg_tile_set.tres" id="1_0t8t3"]
 [ext_resource type="PackedScene" uid="uid://8rbt5lmdrp0s" path="res://scenes/game/camera/camera.tscn" id="1_8l71v"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://glchvmmfffqa" path="res://scenes/game/levels/areas/bomb_shop/bomb_shop.tscn" id="21_sh538"]
 [ext_resource type="PackedScene" uid="uid://dl8afnvp5w315" path="res://scenes/game/levels/objects/power_up/power_up.tscn" id="22_vr6n4"]
 [ext_resource type="PackedScene" uid="uid://usew4qqawlji" path="res://scenes/game/enemy/bald_pirate.tscn" id="t9a_bald_pirate"]
+[ext_resource type="PackedScene" path="res://scenes/game/levels/objects/checkpoint/checkpoint.tscn" id="t9c_checkpoint"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3x710"]
 size = Vector2(31, 21)
@@ -251,3 +252,6 @@ animation = &"green_bottle"
 position = Vector2(940, 405)
 animation = "idle"
 moving_direction = "left"
+
+[node name="Checkpoint" parent="." instance=ExtResource("t9c_checkpoint")]
+position = Vector2(715, 448)

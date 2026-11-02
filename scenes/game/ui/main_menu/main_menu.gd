@@ -1,7 +1,8 @@
 extends Node2D
 ## Main menu.
 ##
-## Start/continue, fullscreen, volume sliders, language and the controls screen.
+## Start/continue, best score, fullscreen, volume sliders, language and the
+## controls screen.
 ## The pause action (Escape / Start) toggles it once the game has started;
 ## while open it pauses the game. Every option can be reached with a gamepad.
 
@@ -30,6 +31,7 @@ var _started = false # True once the first level has been loaded
 @onready var _language = $Main/CanvasLayer/Options/Controls/Language
 @onready var _show_controls = $Main/CanvasLayer/Options/Controls/ShowControls
 @onready var _controls_list = $Main/GameControls/Background/Texts/List
+@onready var _best_score = $Main/CanvasLayer/Options/Init/BestScore
 
 
 func _ready():
@@ -46,6 +48,9 @@ func _ready():
 	_on_slider_ambient_value_changed(_slider_ambient.value)
 	_on_slider_effects_value_changed(_slider_effects.value)
 	_setup_language_selector()
+	_refresh_best_score()
+	Progress.best_score_changed.connect(func(_score): _refresh_best_score())
+	Settings.locale_changed.connect(func(_locale): _refresh_best_score())
 	_toggle_show()
 	_game_controls.visible = false
 
@@ -117,8 +122,14 @@ func _on_button_pressed():
 	if _started:
 		_toggle_show()
 	else:
+		Progress.start_run()
 		SceneTransition.change_scene(PATH_LEVEL_1)
 		_started = true
+
+
+# Shows the saved best score.
+func _refresh_best_score():
+	_best_score.text = tr("MENU_BEST_SCORE") % Progress.best_score
 
 
 func _on_slider_ambient_value_changed(value):

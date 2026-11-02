@@ -1,0 +1,75 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://scenes/game/levels/objects/checkpoint/checkpoint.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://t72w73smgblu" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/platform.png" id="2_platform"]
+[ext_resource type="AudioStream" uid="uid://p7q0802yrppa" path="res://assets/sounds/pickup_life.ogg" id="3_sound"]
+[ext_resource type="Texture2D" uid="uid://dcptpykdlp5rk" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_01.png" id="f1"]
+[ext_resource type="Texture2D" uid="uid://yxsvhy0cus1p" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_02.png" id="f2"]
+[ext_resource type="Texture2D" uid="uid://btdjplxdrgn6r" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_03.png" id="f3"]
+[ext_resource type="Texture2D" uid="uid://dhq4qcrym3ytl" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_04.png" id="f4"]
+[ext_resource type="Texture2D" uid="uid://cxpuw6kkvyx0s" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_05.png" id="f5"]
+[ext_resource type="Texture2D" uid="uid://0511pwbspj7b" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_06.png" id="f6"]
+[ext_resource type="Texture2D" uid="uid://ctvjlvq7b4ck6" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_07.png" id="f7"]
+[ext_resource type="Texture2D" uid="uid://jwp8gh886jp5" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_08.png" id="f8"]
+[ext_resource type="Texture2D" uid="uid://nisbjvqp70qj" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/objects/flag/flag_09.png" id="f9"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_flag"]
+animations = [{
+"frames": [
+{
+"duration": 1.0,
+"texture": ExtResource("f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f9")
+}],
+"loop": true,
+"name": &"wave",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_area"]
+size = Vector2(24, 64)
+
+[node name="Checkpoint" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="Platform" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_platform")
+
+[node name="Flag" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_flag")
+animation = &"wave"
+centered = false
+offset = Vector2(-3, -93)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_area")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sound")
+bus = &"Effects"

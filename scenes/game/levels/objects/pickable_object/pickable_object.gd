@@ -3,7 +3,8 @@ extends Area2D
 ##
 ## Loads the idle frames for the configured item, plays the pick-up animation
 ## when the player touches it, adds one point of its type plus its run score
-## and frees itself.
+## and frees itself. Items collected before the player's respawn point are
+## not spawned again when the level reloads after a death.
 
 
 ## Item type; also selects the sprite folder.
@@ -43,6 +44,10 @@ const SPARKLE_COLORS = {
 
 
 func _ready():
+	# Already collected before the respawn point: it must not count again.
+	if Progress.is_collected(self):
+		queue_free()
+		return
 	if not animation:
 		return
 
@@ -75,6 +80,7 @@ func do_animation():
 
 	var type = POINT_TYPES.get(animation, "GoldCoin")
 	var color = SPARKLE_COLORS.get(animation, Color.WHITE)
+	Progress.mark_collected(self)
 	var completed_set = HealthDashboard.collect(type)
 	GameFeel.burst(global_position, color, 8, 60.0)
 	GameFeel.popup_text(global_position + Vector2(0, -8), "+%d" % HealthDashboard.PICKUP_SCORES[type], color)

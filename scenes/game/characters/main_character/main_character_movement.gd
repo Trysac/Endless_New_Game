@@ -303,6 +303,14 @@ func _play_sound(sound):
 	audio_player.stream = sound
 	audio_player.play()
 
+# Moves the character to `point` (a checkpoint) without fall damage.
+func respawn_at(point: Vector2):
+	character.global_position = point
+	character.velocity = Vector2.ZERO
+	_knockback = 0.0
+	last_position = 0
+	current_position = 0
+
 func set_disabled(disabled: bool):
 	set_physics_process(not disabled)
 

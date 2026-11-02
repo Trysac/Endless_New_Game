@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://hd3ei4djak8da"]
+[gd_scene load_steps=26 format=3 uid="uid://hd3ei4djak8da"]
 
 [ext_resource type="Texture2D" uid="uid://cg6wkkuni8aq8" path="res://assets/sprites/treasure_hunters/palm_tree_island/sprites/background/bg_image.png" id="1_a12cs"]
 [ext_resource type="TileSet" uid="uid://bx1rsqucrwm2i" path="res://assets/resources/bg_tile_set.tres" id="1_atorb"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://usew4qqawlji" path="res://scenes/game/enemy/bald_pirate.tscn" id="t9a_bald_pirate"]
 [ext_resource type="PackedScene" uid="uid://3x3yhe8t8g74" path="res://scenes/game/enemy/big_guy_brute.tscn" id="t9a_big_guy_brute"]
 [ext_resource type="PackedScene" uid="uid://4kx6sg01ez7q" path="res://scenes/game/enemy/cucumber.tscn" id="t9a_cucumber"]
+[ext_resource type="PackedScene" path="res://scenes/game/levels/objects/checkpoint/checkpoint.tscn" id="t9c_checkpoint"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7drek"]
 load_path = "res://.godot/imported/small_cloud_1.png-40532304be8a8e58b358963bfcb15f67.ctex"
@@ -304,3 +305,6 @@ moving_direction = "left"
 position = Vector2(850, 566)
 animation = "run"
 moving_direction = "left"
+
+[node name="Checkpoint" parent="." instance=ExtResource("t9c_checkpoint")]
+position = Vector2(700, 416)

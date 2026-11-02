@@ -34,4 +34,6 @@ CHARACTER_PIRATA,Pirate Brokebeard,Pirata Malaplata
 CHARACTER_SELENA,Selena the Whale,Selena la Ballena
 BOMB_DEFUSED,Defused!,¡Desactivada!
 HUD_SCORE,Score,Puntos
+CHECKPOINT_REACHED,Checkpoint!,¡Punto de control!
 DIAMOND_SET_BONUS,All diamonds! Full health,¡Todos los diamantes! Vida llena
+MENU_BEST_SCORE,Best: %d,Récord: %d
