@@ -81,7 +81,7 @@ func play_again():
 		return
 	_leaving = true
 	_restarting = true
-	MainMenu._on_button_pressed()
+	MainMenu.start_run()
 
 
 ## Goes back to the title screen with the main menu open.
@@ -95,8 +95,7 @@ func main_menu():
 # The run is over: the pause action no longer opens the menu over this screen
 # and the menu offers a new game instead of "Continue".
 func _end_run_in_menu():
-	MainMenu._started = false
-	MainMenu._button.text = "MENU_PLAY"
+	MainMenu.end_run()
 
 
 func _refresh_texts():

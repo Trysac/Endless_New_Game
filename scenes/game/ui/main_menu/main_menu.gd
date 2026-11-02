@@ -142,6 +142,18 @@ func _on_slider_effects_value_changed(value):
 	AudioServer.set_bus_volume_db(bus, linear_to_db(value))
 
 
+## Starts a new run from the first level, as the play button does.
+func start_run():
+	_on_button_pressed()
+
+
+## Ends the current run: the pause action stops opening the menu and the
+## start button offers a new game instead of "Continue".
+func end_run():
+	_started = false
+	_button.text = "MENU_PLAY"
+
+
 func show_menu(_show: bool):
 	if _show:
 		if not visible:
