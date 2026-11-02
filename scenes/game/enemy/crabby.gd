@@ -215,13 +215,8 @@ func _damage(source: Vector2):
 	GameFeel.shake(2.0, 0.12)
 	
 	# A power-up attack kills in one hit and uses one charge.
-	if Global.special_attacks_left > 0:
+	if EnemyRules.consume_special_attack():
 		is_dead = true
-		Global.special_attacks_left -= 1
-	
-	# Out of charges: back to the normal attack.
-	if Global.special_attacks_left == 0:
-		Global.attack_effect = "normal"
 
 	if is_dead or _hits_to_die <= _hits_taken:
 		_stop_attack = true
