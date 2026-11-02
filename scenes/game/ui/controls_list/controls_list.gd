@@ -20,10 +20,6 @@ const ACTION_LABELS = {
 	&"inventory_toggle": "CONTROLS_INVENTORY",
 	&"pause": "CONTROLS_MENU",
 }
-const COLOR_TEXT = Color(0.96, 0.9, 0.78)
-const COLOR_BUTTON = Color(0.29, 0.18, 0.12, 0.9)
-const COLOR_BUTTON_FOCUS = Color(0.55, 0.33, 0.16, 1)
-const COLOR_BORDER = Color(0.95, 0.72, 0.35)
 
 # Button being remapped and whether it takes a gamepad button
 var _listening: Button = null
@@ -114,34 +110,15 @@ func _new_label(text: String, alignment: HorizontalAlignment) -> Label:
 	label.size_flags_stretch_ratio = 1.7 if alignment == HORIZONTAL_ALIGNMENT_LEFT else 1.0
 	label.add_theme_font_override("font", FONT)
 	label.add_theme_font_size_override("font_size", FONT_SIZE)
-	label.add_theme_color_override("font_color", COLOR_TEXT)
+	label.add_theme_color_override("font_color", PixelStyle.COLOR_TEXT)
 	return label
 
 
 func _new_button() -> Button:
 	var button = Button.new()
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.add_theme_font_override("font", FONT)
-	button.add_theme_font_size_override("font_size", FONT_SIZE)
-	button.add_theme_color_override("font_color", COLOR_TEXT)
-	button.add_theme_color_override("font_hover_color", Color.WHITE)
-	button.add_theme_color_override("font_focus_color", Color.WHITE)
-	button.add_theme_stylebox_override("normal", _style(COLOR_BUTTON, 1))
-	button.add_theme_stylebox_override("hover", _style(COLOR_BUTTON_FOCUS, 1))
-	button.add_theme_stylebox_override("pressed", _style(COLOR_BUTTON_FOCUS, 2))
-	button.add_theme_stylebox_override("focus", _style(Color(0, 0, 0, 0), 2))
+	PixelStyle.apply_button(button, FONT_SIZE)
 	return button
-
-
-func _style(color: Color, border: int) -> StyleBoxFlat:
-	var style = StyleBoxFlat.new()
-	style.bg_color = color
-	style.border_color = COLOR_BORDER
-	style.set_border_width_all(border)
-	style.set_corner_radius_all(3)
-	style.content_margin_left = 6
-	style.content_margin_right = 6
-	return style
 
 
 func _start_listening(button: Button, joypad: bool):

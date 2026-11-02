@@ -48,6 +48,8 @@ func _ready():
 	_on_slider_ambient_value_changed(_slider_ambient.value)
 	_on_slider_effects_value_changed(_slider_effects.value)
 	_setup_language_selector()
+	PixelStyle.apply_button(_show_controls, 20)
+	PixelStyle.apply_button(_language, 14)
 	_refresh_best_score()
 	Progress.best_score_changed.connect(func(_score): _refresh_best_score())
 	Settings.locale_changed.connect(func(_locale): _refresh_best_score())
