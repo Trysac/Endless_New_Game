@@ -12,6 +12,16 @@ and Spanish, with keyboard or gamepad. (The repository keeps its first name,
 | ![New enemies](docs/screenshots/enemies.png) | ![Final level](docs/screenshots/final_level.png) |
 | ![Captain boss, second phase](docs/screenshots/boss.png) | ![Victory screen](docs/screenshots/victory.png) |
 
+## Play it
+
+- **In your browser:** [trysac.github.io/Endless_New_Game](https://trysac.github.io/Endless_New_Game/)
+- **On itch.io:** [trysac.itch.io/plunder-isles](https://trysac.itch.io/plunder-isles)
+- **Get the code:** fork this repository, or clone it:
+
+  ```bash
+  git clone https://github.com/Trysac/Endless_New_Game.git
+  ```
+
 ## Run it
 
 1. Install **Godot 4.7.2 (standard, not .NET)** from the
