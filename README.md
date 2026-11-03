@@ -1,8 +1,9 @@
-# Endless New Game
+# Plunder Isles
 
 A 2D pirate platformer made with Godot: fight your way across three islands and a
 ship's hold, collect treasure, and defeat the Captain to win. Playable in English
-and Spanish, with keyboard or gamepad.
+and Spanish, with keyboard or gamepad. (The repository keeps its first name,
+*Endless New Game*.)
 
 ![Title screen](docs/screenshots/title.png)
 

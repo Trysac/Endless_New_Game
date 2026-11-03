@@ -63,9 +63,9 @@ jobs:
         run: |
           mkdir -p build/web build/windows
           ~/godot/godot --headless --path . --export-release "Web" build/web/index.html
-          ~/godot/godot --headless --path . --export-release "Windows Desktop" "build/windows/Endless New Game.exe"
+          ~/godot/godot --headless --path . --export-release "Windows Desktop" "build/windows/Plunder Isles.exe"
           test -s build/web/index.html
-          test -s "build/windows/Endless New Game.exe"
+          test -s "build/windows/Plunder Isles.exe"
 
       - uses: actions/upload-artifact@v4
         with:
