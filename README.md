@@ -5,6 +5,8 @@ ship's hold, collect treasure, and defeat the Captain to win. Playable in Englis
 and Spanish, with keyboard or gamepad. (The repository keeps its first name,
 *Endless New Game*.)
 
+![Gameplay](docs/media/gameplay.gif)
+
 ![Title screen](docs/screenshots/title.png)
 
 | | |
